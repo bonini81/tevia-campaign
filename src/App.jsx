@@ -18,7 +18,9 @@ function App() {
 
   return (
     <div className="app">
-      <header>
+     <div>
+        <header> 
+           <div className="container header-container">
         <div className="logo">
           <h1>Campaign Logo</h1>
         </div>
@@ -26,12 +28,14 @@ function App() {
           <a href="#video-section">Video</a>
           <a href="#info-section">Info</a>
           <a href="#second-video">Second Video</a>
-        </nav>
+            </nav>
+            </div>
       </header>
 
       <main>
-        <section id="video-section" className="video-section">
-          <div className="video-container">
+          <section id="video-section" className="video-section">
+            <div className="container">
+              <div className="video-container">
             <iframe 
               width="100%" 
               height="100%" 
@@ -41,7 +45,8 @@ function App() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen>
             </iframe>
-          </div>
+              </div>
+            </div>
         </section>
 
         <section id="info-section" className="info-section">
@@ -71,7 +76,8 @@ function App() {
 
       <footer>
         <p>&copy; 2025 Campaign Name. All rights reserved.</p>
-      </footer>
+        </footer>
+        </div>
     </div>
   )
 }
