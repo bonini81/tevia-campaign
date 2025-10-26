@@ -49,28 +49,32 @@ function App() {
             </div>
         </section>
 
-        <section id="info-section" className="info-section">
-          <div className="info-content">
-            <div className="text-content">
-              <h2>Campaign Information</h2>
-              <p>This section will contain important campaign information and details. 
-                 We can add more complex logic and content here later.</p>
-            </div>
+          <section id="info-section" className="info-section">
+            <div className="container">
+            <div className="info-content">
+              <div className="text-content">
+                <h2>Campaign Information</h2>
+                <p>This section will contain important campaign information and details. 
+                  We can add more complex logic and content here later.</p>
+              </div>
+                </div>
           </div>
         </section>
 
-        <section id="second-video" className="video-section">
-          <div className="video-container">
-            <iframe 
-              width="100%" 
-              height="100%" 
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-              title="Second Sample Video"
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen>
-            </iframe>
-          </div>
+          <section id="second-video" className="video-section">
+            <div className="container">
+            <div className="video-container">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="Second Sample Video"
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen>
+              </iframe>
+                </div>
+            </div>
         </section>
       </main>
 
