@@ -7,6 +7,7 @@ function App() {
   const [formData, setFormData] = useState({
     text: 'Dummy Text',
     photo: null,
+    imageUrl: null,  // Add this line
     firstName: 'Andy',
     lastName: '',
     email: ''
@@ -108,17 +109,23 @@ function App() {
                       formDataToSubmit.append('lastName', values.lastName);
                       formDataToSubmit.append('email', values.email);
                       
+                      let imageUrl = null;
                       if (values.photo) {
                         formDataToSubmit.append('photo', values.photo);
+                        imageUrl = URL.createObjectURL(values.photo);
                       }
 
-                      setFormData(values);
+                      setFormData({
+                        ...values,
+                        imageUrl: imageUrl
+                      });
+
                       setSubmitting(false);
                       setOpenForm(false);
                       setOpenWall(true);
                     }}
                   >
-                    {({ errors, touched, setFieldValue }) => (
+                    {({ errors, touched, setFieldValue, values }) => (
                       <Form className="campaign-form">
                         <div className="form-group">
                           <Field
@@ -130,14 +137,28 @@ function App() {
                           {errors.text && touched.text ? <div className="error">{errors.text}</div> : null}
                         </div>
 
-                        <div className="form-group">
-                          <input
-                            type="file"
-                            onChange={(event) => {
-                              setFieldValue("photo", event.currentTarget.files[0]);
-                            }}
-                            accept="image/*"
-                          />
+                       <div className="form-group">
+                          <div className="file-input-wrapper">
+                            <input
+                              type="file"
+                              onChange={(event) => {
+                                const file = event.currentTarget.files[0];
+                                if (file) {
+                                  setFieldValue("photo", file);
+                                }
+                              }}
+                              accept=".jpg,.jpeg,.png,.webp"
+                              id="file-upload"
+                            />
+                            {/* Show filename or check icon when file is selected */}
+                            {values.photo && (
+                                <div className="file-status">
+                                  <p style={{ color: 'black', fontWeight: 'bold' }}>Archivo seleccionado:</p>
+                                <span className="file-name">{values.photo.name}</span>
+                                <span className="check-icon">✓</span>
+                              </div>
+                            )}
+                          </div>
                         </div>
 
                         <div className="form-group">
@@ -180,7 +201,14 @@ function App() {
                   {formData &&
                     <>
                     <p>{formData?.text}</p>
-                    <p>{formData?.firstName}</p>
+                      <p>{formData?.firstName}</p>
+                        {formData.imageUrl && (
+                          <img 
+                            src={formData.imageUrl} 
+                            alt="Uploaded" 
+                            style={{ maxWidth: '100%', marginTop: '1rem' }} 
+                          />
+                        )}
                     </>
                   }
     

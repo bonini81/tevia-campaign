@@ -112,6 +112,34 @@ main {
   margin-bottom: 1rem;
 }
 
+/* Image field styles */
+
+.file-input-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.file-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.file-name {
+  color: #333;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.check-icon {
+  color: #22c55e;
+  font-weight: bold;
+}
+
 /* Footer styles */
 footer {
   background-color: #333;
