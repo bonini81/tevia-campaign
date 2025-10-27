@@ -1,7 +1,30 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { Formik, Form, Field } from 'formik'
+import * as Yup from 'yup'
 import './App.css'
 
 function App() {
+  const [formData, setFormData] = useState({
+    text: '',
+    photo: null,
+    firstName: '',
+    lastName: '',
+    email: ''
+  });
+
+  const validationSchema = Yup.object({
+    text: Yup.string()
+      .max(100, 'El texto no puede exceder 100 caracteres')
+      .required('El texto es requerido'),
+    firstName: Yup.string()
+      .required('El nombre es requerido'),
+    lastName: Yup.string()
+      .required('El apellido es requerido'),
+    email: Yup.string()
+      .email('Email inválido')
+      .required('El email es requerido'),
+  });
+
   useEffect(() => {
     // Smooth scroll behavior for menu items
     const menuLinks = document.querySelectorAll('nav a[href^="#"]');
@@ -51,13 +74,97 @@ function App() {
 
           <section id="info-section" className="info-section">
             <div className="container">
-            <div className="info-content">
-              <div className="text-content">
-                <h2>Campaign Information</h2>
-                <p>This section will contain important campaign information and details. 
-                  We can add more complex logic and content here later.</p>
-              </div>
+              <div className="info-content">
+                
+               <div className="text-content">
+          
+                  <h3>¿Qué es lo que importa de verdad para ti?</h3>
+                  <p>Deja tu mensaje aquí</p>
+                  <br />
+                  <button>Tu comentario</button>
                 </div>
+                
+                 <div className="form-content">
+                  <Formik
+                    initialValues={{
+                      text: '',
+                      firstName: '',
+                      lastName: '',
+                      email: ''
+                    }}
+                    validationSchema={validationSchema}
+                    onSubmit={(values, { setSubmitting }) => {
+                      const formDataToSubmit = new FormData();
+                      formDataToSubmit.append('text', values.text);
+                      formDataToSubmit.append('firstName', values.firstName);
+                      formDataToSubmit.append('lastName', values.lastName);
+                      formDataToSubmit.append('email', values.email);
+                      
+                      if (values.photo) {
+                        formDataToSubmit.append('photo', values.photo);
+                      }
+
+                      setFormData(values);
+                      setSubmitting(false);
+                    }}
+                  >
+                    {({ errors, touched, setFieldValue }) => (
+                      <Form className="campaign-form">
+                        <div className="form-group">
+                          <Field
+                            as="textarea"
+                            name="text"
+                            placeholder="Tu mensaje (máximo 100 caracteres)"
+                            maxLength={100}
+                          />
+                          {errors.text && touched.text ? <div className="error">{errors.text}</div> : null}
+                        </div>
+
+                        <div className="form-group">
+                          <input
+                            type="file"
+                            onChange={(event) => {
+                              setFieldValue("photo", event.currentTarget.files[0]);
+                            }}
+                            accept="image/*"
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <Field
+                            type="text"
+                            name="firstName"
+                            placeholder="Nombre"
+                          />
+                          {errors.firstName && touched.firstName ? <div className="error">{errors.firstName}</div> : null}
+                        </div>
+
+                        <div className="form-group">
+                          <Field
+                            type="text"
+                            name="lastName"
+                            placeholder="Apellido"
+                          />
+                          {errors.lastName && touched.lastName ? <div className="error">{errors.lastName}</div> : null}
+                        </div>
+
+                        <div className="form-group">
+                          <Field
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                          />
+                          {errors.email && touched.email ? <div className="error">{errors.email}</div> : null}
+                        </div>
+
+                        <button type="submit" className="submit-button">
+                          Enviar
+                        </button>
+                      </Form>
+                    )}
+                  </Formik>
+                 </div>
+              </div>
           </div>
         </section>
 
