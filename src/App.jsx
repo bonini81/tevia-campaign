@@ -210,7 +210,36 @@ function App() {
                           />
                         )}
                     </>
-                  }
+                    }
+                    <div className="social-share">
+          <button
+            onClick={() => {
+              const text = encodeURIComponent(formData.text);
+              const url = encodeURIComponent(window.location.href);
+              window.open(
+                `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
+                'twitter-share',
+                'width=550,height=400'
+              );
+            }}
+            className="share-button twitter"
+          >
+            Share on Twitter
+          </button>
+          <button
+            onClick={() => {
+              const url = encodeURIComponent(window.location.href);
+              window.open(
+                `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+                'facebook-share',
+                'width=550,height=400'
+              );
+            }}
+            className="share-button facebook"
+          >
+            Share on Facebook
+          </button>
+        </div>
     
                   </div>
                 ) : ""}
