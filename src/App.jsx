@@ -12,6 +12,15 @@ function App() {
     email: ''
   });
 
+  const [openForm, setOpenForm] = useState(false);
+  const [openWall, setOpenWall] = useState(false);
+  const [openButton, setOpenButton] = useState(true);
+
+  const handleOpenForm = () => {
+    setOpenForm(true);
+    setOpenButton(false);
+  }
+
   const validationSchema = Yup.object({
     text: Yup.string()
       .max(100, 'El texto no puede exceder 100 caracteres')
@@ -80,9 +89,9 @@ function App() {
           
                   <h3>¿Qué es lo que importa de verdad para ti?</h3>
                   <br />
-                  <button>Deja tu mensaje</button>
+                  {openButton && <button onClick={handleOpenForm}>Deja tu mensaje</button>}
                 </div>
-                
+                {openForm ? 
                  <div className="form-content">
                   <Formik
                     initialValues={{
@@ -105,6 +114,8 @@ function App() {
 
                       setFormData(values);
                       setSubmitting(false);
+                      setOpenForm(false);
+                      setOpenWall(true);
                     }}
                   >
                     {({ errors, touched, setFieldValue }) => (
@@ -163,7 +174,9 @@ function App() {
                     )}
                   </Formik>
                 </div>
-                <div className="message-content">
+                  : ""}
+                {openWall ? (
+                  <div className="message-content">
                   {formData &&
                     <>
                     <p>{formData?.text}</p>
@@ -172,6 +185,8 @@ function App() {
                   }
     
                   </div>
+                ) : ""}
+               
               </div>
           </div>
         </section>
