@@ -1,42 +1,232 @@
-#root {
-  max-width: 1280px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header styles */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #646cff;
+}
+
+/* Main content styles */
+main {
+  margin-top: 70px; /* Header height + some spacing */
+  flex: 1;
+}
+
+.container {
+  width: 100%;
   margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.header-container { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message-content  {
+  color: #333;
+}
+
+/* Video section styles */
+.video-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2rem;
+}
+
+/* Update video container */
+.video-container {
+  width: 100%;
+  max-width: 1400px;
+  aspect-ratio: 16/9;
+  margin: 0 auto;
+}
+
+/* Update info section */
+.info-section {
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  background: url('https://picsum.photos/1920/1080') center/cover fixed;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+
+.info-content {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  margin-right: 10%;
+}
+
+.text-content {
+  color: #333;
+}
+
+.text-content h2 {
+  margin-bottom: 1rem;
+}
+
+/* Image field styles */
+
+.file-input-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.file-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.file-name {
+  color: #333;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.check-icon {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+/* Footer styles */
+footer {
+  background-color: #333;
+  color: white;
   text-align: center;
+  padding: 1rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Media Queries */
+/* Mobile devices - screens smaller than 768px */
+@media (max-width: 767px) {
+  header {
+    padding: 0.5rem 1rem;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  nav {
+    gap: 1rem;
+  }
+
+  .info-content {
+    margin-right: 0;
+    max-width: 100%;
+  }
+
+  .video-container {
+    width: 100%;
   }
 }
 
-.card {
-  padding: 2em;
+/* Tablet - screens between 768px and 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .info-content {
+    margin-right: 5%;
+    max-width: 400px;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+/* Form styles */
+.campaign-form {
+  margin-top: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Desktop - screens 1024px and larger */
+@media (min-width: 1024px) {
+  /* Current desktop styles already working well */
+  .container {
+    max-width: 1400px;
+    padding: 0 2rem;
+  }
 }
