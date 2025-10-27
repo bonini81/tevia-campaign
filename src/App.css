@@ -63,6 +63,10 @@ main {
   align-items: center;
 }
 
+.message-content  {
+  color: #333;
+}
+
 /* Video section styles */
 .video-section {
   width: 100%;

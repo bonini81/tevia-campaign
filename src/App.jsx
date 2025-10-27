@@ -5,9 +5,9 @@ import './App.css'
 
 function App() {
   const [formData, setFormData] = useState({
-    text: '',
+    text: 'Dummy Text',
     photo: null,
-    firstName: '',
+    firstName: 'Andy',
     lastName: '',
     email: ''
   });
@@ -79,9 +79,8 @@ function App() {
                <div className="text-content">
           
                   <h3>¿Qué es lo que importa de verdad para ti?</h3>
-                  <p>Deja tu mensaje aquí</p>
                   <br />
-                  <button>Tu comentario</button>
+                  <button>Deja tu mensaje</button>
                 </div>
                 
                  <div className="form-content">
@@ -163,7 +162,16 @@ function App() {
                       </Form>
                     )}
                   </Formik>
-                 </div>
+                </div>
+                <div className="message-content">
+                  {formData &&
+                    <>
+                    <p>{formData?.text}</p>
+                    <p>{formData?.firstName}</p>
+                    </>
+                  }
+    
+                  </div>
               </div>
           </div>
         </section>
