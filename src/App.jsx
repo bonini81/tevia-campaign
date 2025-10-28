@@ -67,23 +67,28 @@ function App() {
 
       <main>
           <section id="video-section" className="video-section">
-            <div className="container">
-              <div className="video-container">
-            <iframe 
-              width="100%" 
-              height="100%" 
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-              title="Sample Video"
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen>
-            </iframe>
+            <div className="container video-container">
+           <iframe 
+           width="100%" 
+           height="100%" 
+           src="https://www.youtube.com/embed/DDbhfS_XukM?si=2JazOuhSEVcrqFuS" 
+           title="YouTube video player" 
+           frameborder="0" 
+           allow="accelerometer; 
+           autoplay; 
+           clipboard-write; 
+           encrypted-media; 
+           gyroscope; 
+           picture-in-picture; 
+           web-share" 
+           referrerpolicy="strict-origin-when-cross-origin" 
+           allowfullscreen> 
+           </iframe>
               </div>
-            </div>
         </section>
 
           <section id="info-section" className="info-section">
-            <div className="container">
+            <div className="container wall-container">
               <div className="info-content">
                 
                <div className="text-content">
