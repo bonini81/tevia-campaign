@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
+import logo from './assets/1-logo.png'
 import './App.css'
 
 function App() {
@@ -54,8 +55,8 @@ function App() {
      <div>
         <header> 
            <div className="container header-container">
-        <div className="logo">
-          <h1>Campaign Logo</h1>
+            <div>
+              <img src={logo} alt="Campaign Logo" className="logo" />
         </div>
         <nav>
           <a href="#video-section">Video</a>
