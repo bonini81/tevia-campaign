@@ -77,12 +77,16 @@ main {
 
 /* Video section styles */
 .video-section {
+  background-color: #F9DD4C;
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+}
+.second-video-section {
+  background-color: #9bd99c;
 }
 
 /* Update video container */

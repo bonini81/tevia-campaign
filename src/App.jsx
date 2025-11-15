@@ -254,7 +254,7 @@ function App() {
           </div>
         </section>
 
-          <section id="second-video" className="video-section">
+          <section id="second-video" className="video-section second-video-section">
             <div className="container">
             <div className="video-container">
               <iframe 
