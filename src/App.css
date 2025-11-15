@@ -97,7 +97,7 @@ main {
 .info-section {
   min-height: 100vh;
   padding: 4rem 1rem;
-  background: url('https://picsum.photos/1920/1080') center/cover fixed;
+  background: url('assets/fondo-info-section.jpg') center/cover fixed;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -105,15 +105,17 @@ main {
 
 
 .info-content {
-  background: rgba(255, 255, 255, 0.95);
+  background: #F9DD4C;
   padding: 2rem;
   border-radius: 8px;
   max-width: 500px;
-  margin-right: 10%;
+  margin-right: 0px;
 }
 
 .text-content {
-  color: #333;
+  font-family: 'Lato', sans-serif;
+  font-weight: bolder;
+  color: #439a4c; 
 }
 
 .text-content h2 {
