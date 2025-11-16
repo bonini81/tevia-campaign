@@ -216,9 +216,21 @@ footer {
     gap: 1rem;
   }
 
+  .container.wall-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .info-section {
+     background: url('assets/fondo-info-section-mobile.jpg') left/cover fixed;
+     align-items: first baseline;
+  }
+
+
   .info-content {
     margin-right: 0;
-    max-width: 100%;
+    width: 75%;
+    opacity: 0.9;
   }
 
   .video-container {
