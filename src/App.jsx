@@ -154,7 +154,7 @@ function App() {
                                 }
                               }}
                               accept=".jpg,.jpeg,.png,.webp"
-                              id="file-upload"
+                              className="file-upload"
                             />
                             {/* Show filename or check icon when file is selected */}
                             {values.photo && (
@@ -206,8 +206,8 @@ function App() {
                   <div className="message-content">
                   {formData &&
                     <>
-                    <p>{formData?.text}</p>
-                      <p>{formData?.firstName}</p>
+                    <p className="wall-text-content">{formData?.text}</p>
+                      <p className="wall-text-content">{formData?.firstName}</p>
                         {formData.imageUrl && (
                           <img 
                             src={formData.imageUrl} 
