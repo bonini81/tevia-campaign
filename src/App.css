@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -15,14 +16,20 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 1rem 2rem;
-  background-color: white;
+  padding: 0 2rem;
+  background-color: #439a4c;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
 }
+
+.logo {
+  width: 90px;
+  height: auto;
+}
+
 
 .logo h1 {
   font-size: 1.5rem;
@@ -35,10 +42,11 @@ nav {
 }
 
 nav a {
+  font-family: 'Lato', sans-serif;
   text-decoration: none;
-  color: #333;
-  font-weight: 500;
+  color: #fff;
   transition: color 0.3s ease;
+
 }
 
 nav a:hover {
@@ -69,12 +77,16 @@ main {
 
 /* Video section styles */
 .video-section {
+  background-color: #F9DD4C;
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+}
+.second-video-section {
+  background-color: #9bd99c;
 }
 
 /* Update video container */
@@ -89,7 +101,7 @@ main {
 .info-section {
   min-height: 100vh;
   padding: 4rem 1rem;
-  background: url('https://picsum.photos/1920/1080') center/cover fixed;
+  background: url('assets/fondo-info-section.jpg') center/cover fixed;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -97,15 +109,17 @@ main {
 
 
 .info-content {
-  background: rgba(255, 255, 255, 0.95);
+  background: #F9DD4C;
   padding: 2rem;
   border-radius: 8px;
   max-width: 500px;
-  margin-right: 10%;
+  margin-right: 0px;
 }
 
 .text-content {
-  color: #333;
+  font-family: 'Lato', sans-serif;
+  font-weight: bolder;
+  color: #439a4c; 
 }
 
 .text-content h2 {
@@ -142,10 +156,13 @@ main {
 
 /* Footer styles */
 footer {
-  background-color: #333;
-  color: white;
+  background-color: #439a4c;
   text-align: center;
   padding: 1rem;
+  font-family: 'Lato', sans-serif;
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease;
 }
 
 
