@@ -53,6 +53,21 @@ nav a:hover {
   color: #646cff;
 }
 
+button.button-message__styles {
+  border: 2px solid #439a4c;
+  background-color: transparent;
+  color: #439a4c;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  &:hover {
+    text-decoration: underline 1px #439a4c;
+  }
+}
+
 /* Main content styles */
 main {
   margin-top: 70px; /* Header height + some spacing */

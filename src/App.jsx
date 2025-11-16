@@ -96,7 +96,7 @@ function App() {
           
                   <h3>¿Qué es lo que importa de verdad para ti?</h3>
                   <br />
-                  {openButton && <button onClick={handleOpenForm}>Deja tu mensaje</button>}
+                  {openButton && <button onClick={handleOpenForm} className="button-message__styles">Deja tu mensaje</button>}
                 </div>
                 {openForm ? 
                  <div className="form-content">
