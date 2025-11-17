@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
+import emailjs from '@emailjs/browser'
 import logo from './assets/1-logo.png'
 import './App.css'
 
@@ -8,7 +9,7 @@ function App() {
   const [formData, setFormData] = useState({
     text: 'Dummy Text',
     photo: null,
-    imageUrl: null,  // Add this line
+    imageUrl: null,
     firstName: 'Andy',
     lastName: '',
     email: ''
@@ -17,6 +18,11 @@ function App() {
   const [openForm, setOpenForm] = useState(false);
   const [openWall, setOpenWall] = useState(false);
   const [openButton, setOpenButton] = useState(true);
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init('RCCk5dPYld2u2ufwQ'); // Replace with your EmailJS Public Key
+  }, []);
 
   const handleOpenForm = () => {
     setOpenForm(true);
@@ -35,6 +41,42 @@ function App() {
       .email('Email inválido')
       .required('El email es requerido'),
   });
+
+  const handleFormSubmit = (values, { setSubmitting }) => {
+    let imageUrl = null;
+    if (values.photo) {
+      imageUrl = URL.createObjectURL(values.photo);
+    }
+
+    // Prepare email template parameters
+    const templateParams = {
+      to_email: 'andresdominguez81@gmail.com', // Replace with your client's email
+      from_name: `${values.firstName} ${values.lastName}`,
+      from_email: values.email,
+      message: values.text,
+      reply_to: values.email
+    };
+
+    // Send email via EmailJS
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+      .then((response) => {
+        console.log('Email sent successfully!', response.status);
+        
+        setFormData({
+          ...values,
+          imageUrl: imageUrl
+        });
+
+        setSubmitting(false);
+        setOpenForm(false);
+        setOpenWall(true);
+      })
+      .catch((error) => {
+        console.error('Failed to send email:', error);
+        alert('Error sending message. Please try again.');
+        setSubmitting(false);
+      });
+  };
 
   useEffect(() => {
     // Smooth scroll behavior for menu items
@@ -74,7 +116,7 @@ function App() {
            height="100%" 
            src="https://www.youtube.com/embed/DDbhfS_XukM?si=2JazOuhSEVcrqFuS" 
            title="YouTube video player" 
-           frameborder="0" 
+           frameBorder="0" 
            allow="accelerometer; 
            autoplay; 
            clipboard-write; 
@@ -82,8 +124,8 @@ function App() {
            gyroscope; 
            picture-in-picture; 
            web-share" 
-           referrerpolicy="strict-origin-when-cross-origin" 
-           allowfullscreen> 
+           referrerPolicy="strict-origin-when-cross-origin" 
+           allowFullScreen> 
            </iframe>
               </div>
         </section>
@@ -108,28 +150,7 @@ function App() {
                       email: ''
                     }}
                     validationSchema={validationSchema}
-                    onSubmit={(values, { setSubmitting }) => {
-                      const formDataToSubmit = new FormData();
-                      formDataToSubmit.append('text', values.text);
-                      formDataToSubmit.append('firstName', values.firstName);
-                      formDataToSubmit.append('lastName', values.lastName);
-                      formDataToSubmit.append('email', values.email);
-                      
-                      let imageUrl = null;
-                      if (values.photo) {
-                        formDataToSubmit.append('photo', values.photo);
-                        imageUrl = URL.createObjectURL(values.photo);
-                      }
-
-                      setFormData({
-                        ...values,
-                        imageUrl: imageUrl
-                      });
-
-                      setSubmitting(false);
-                      setOpenForm(false);
-                      setOpenWall(true);
-                    }}
+                    onSubmit={handleFormSubmit}
                   >
                     {({ errors, touched, setFieldValue, values }) => (
                       <Form className="campaign-form">
@@ -156,7 +177,6 @@ function App() {
                               accept=".jpg,.jpeg,.png,.webp"
                               className="file-upload"
                             />
-                            {/* Show filename or check icon when file is selected */}
                             {values.photo && (
                                 <div className="file-status">
                                   <p style={{ color: 'black', fontWeight: 'bold' }}>Archivo seleccionado:</p>
