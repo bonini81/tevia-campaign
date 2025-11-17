@@ -158,6 +158,7 @@ function App() {
                           <Field
                             as="textarea"
                             name="text"
+                            className="textarea-field"
                             placeholder="Tu mensaje (máximo 100 caracteres)"
                             maxLength={100}
                           />
@@ -227,7 +228,7 @@ function App() {
                   {formData &&
                     <>
                     <p className="wall-text-content">{formData?.text}</p>
-                      <p className="wall-text-content">{formData?.firstName}</p>
+                      <p className="wall-text-name">- {formData?.firstName} {formData?.lastName}</p>
                         {formData.imageUrl && (
                           <img 
                             src={formData.imageUrl} 

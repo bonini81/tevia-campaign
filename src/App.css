@@ -141,7 +141,14 @@ main {
   font-family: 'Amatic SC', cursive;
   font-weight: bold;
   color: #439a4c; 
-  font-size: 2rem;
+  font-size: 2.1rem;
+}
+.wall-text-name {
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+  color: #439a4c; 
+  font-size: 1rem;
+  margin-top: 0.3rem;
 }
 
 .text-content h2 {
@@ -204,6 +211,40 @@ footer {
   transition: color 0.3s ease;
 }
 
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #439a4c;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: #f9dd4c;
+  color: #439a4c !important;
+  font-weight: bold;
+}
+
+
+input[type="file"].file-upload {
+ border: 1px solid #439a4c;
+ border-radius: 4px;
+ padding: 0.5rem;
+ background-color: transparent;
+ color: #439a4c;
+ cursor: pointer;
+ font-size: 1rem;
+ font-weight: bold;
+}
+
+/* Add placeholder styling */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #439a4c;
+  opacity: 1;
+}
 
 /* Media Queries */
 /* Mobile devices - screens smaller than 768px */
@@ -229,7 +270,7 @@ footer {
 
   .info-content {
     margin-right: 0;
-    width: 75%;
+    width: 100%;
     opacity: 0.9;
   }
 
@@ -249,44 +290,6 @@ footer {
 /* Form styles */
 .campaign-form {
   margin-top: 2rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #439a4c;
-  border-radius: 4px;
-  font-size: 1rem;
-  background-color: transparent;
-  color: #439a4c;
-  opacity:1 !important;
-  font-weight: bold;
-}
-
-.form-group textarea {
-  min-height: 100px;
-  resize: vertical;
-  border: 1px solid #439a4c;
-  background-color: transparent;
-  color: #439a4c;
-  opacity:1 !important;
-  font-weight: bold;
-}
-
-input.file-upload {
-  border: 1px solid #439a4c;
-  border-radius: 4px;
-  padding: 0.5rem;
-  background-color: transparent;
-  color: #439a4c;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
 }
 
 .error {
