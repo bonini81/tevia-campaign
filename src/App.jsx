@@ -36,48 +36,47 @@ function App() {
       .required('El email es requerido'),
   });
 
-  const handleFormSubmit = async (values, { setSubmitting }) => {
-    let imageUrl = null;
-    if (values.photo) {
-      imageUrl = URL.createObjectURL(values.photo);
-    }
+ const handleFormSubmit = async (values, { setSubmitting }) => {
+  let imageUrl = null;
+  if (values.photo) {
+    imageUrl = URL.createObjectURL(values.photo);
+  }
 
-    try {
-      // Send form data via Formspree
-      const response = await fetch('https://formspree.io/f/movygaod', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from_name: `${values.firstName} ${values.lastName}`,
-          from_email: values.email,
-          message: values.text,
-          _subject: 'New Campaign Message'
-        })
+  try {
+    // Send form data via Basin
+    const response = await fetch('https://usebasin.com/f/994b9c63fbcc', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email_value: values.email, // Basin field
+        name: `${values.firstName} ${values.lastName}`,
+        message: values.text,
+      })
+    });
+
+    if (response.ok) {
+      console.log('Form submitted successfully!');
+      
+      setFormData({
+        ...values,
+        imageUrl: imageUrl
       });
 
-      if (response.ok) {
-        console.log('Email sent successfully!');
-        
-        setFormData({
-          ...values,
-          imageUrl: imageUrl
-        });
-
-        setSubmitting(false);
-        setOpenForm(false);
-        setOpenWall(true);
-      } else {
-        alert('Error sending message. Please try again.');
-        setSubmitting(false);
-      }
-    } catch (error) {
-      console.error('Error:', error);
+      setSubmitting(false);
+      setOpenForm(false);
+      setOpenWall(true);
+    } else {
       alert('Error sending message. Please try again.');
       setSubmitting(false);
     }
-  };
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error sending message. Please try again.');
+    setSubmitting(false);
+  }
+};
 
   useEffect(() => {
     // Smooth scroll behavior for menu items
@@ -102,9 +101,9 @@ function App() {
               <img src={logo} alt="Campaign Logo" className="logo" />
         </div>
         <nav>
-          <a href="#video-section">Video</a>
-          <a href="#info-section">Info</a>
-          <a href="#second-video">Second Video</a>
+         
+          <a href="#info-section">Muro</a>
+          <a href="#second-video">Motivación</a>
             </nav>
             </div>
       </header>
