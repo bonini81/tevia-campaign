@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-import emailjs from '@emailjs/browser'
 import logo from './assets/1-logo.png'
 import './App.css'
 
@@ -18,11 +17,6 @@ function App() {
   const [openForm, setOpenForm] = useState(false);
   const [openWall, setOpenWall] = useState(false);
   const [openButton, setOpenButton] = useState(true);
-
-  // Initialize EmailJS
-  useEffect(() => {
-    emailjs.init('RCCk5dPYld2u2ufwQ'); // Replace with your EmailJS Public Key
-  }, []);
 
   const handleOpenForm = () => {
     setOpenForm(true);
@@ -42,25 +36,29 @@ function App() {
       .required('El email es requerido'),
   });
 
-  const handleFormSubmit = (values, { setSubmitting }) => {
+  const handleFormSubmit = async (values, { setSubmitting }) => {
     let imageUrl = null;
     if (values.photo) {
       imageUrl = URL.createObjectURL(values.photo);
     }
 
-    // Prepare email template parameters
-    const templateParams = {
-      to_email: 'andresdominguez81@gmail.com', // Replace with your client's email
-      from_name: `${values.firstName} ${values.lastName}`,
-      from_email: values.email,
-      message: values.text,
-      reply_to: values.email
-    };
+    try {
+      // Send form data via Formspree
+      const response = await fetch('https://formspree.io/f/movygaod', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from_name: `${values.firstName} ${values.lastName}`,
+          from_email: values.email,
+          message: values.text,
+          _subject: 'New Campaign Message'
+        })
+      });
 
-    // Send email via EmailJS
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-      .then((response) => {
-        console.log('Email sent successfully!', response.status);
+      if (response.ok) {
+        console.log('Email sent successfully!');
         
         setFormData({
           ...values,
@@ -70,12 +68,15 @@ function App() {
         setSubmitting(false);
         setOpenForm(false);
         setOpenWall(true);
-      })
-      .catch((error) => {
-        console.error('Failed to send email:', error);
+      } else {
         alert('Error sending message. Please try again.');
         setSubmitting(false);
-      });
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error sending message. Please try again.');
+      setSubmitting(false);
+    }
   };
 
   useEffect(() => {
