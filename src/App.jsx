@@ -8,7 +8,7 @@ function App() {
   const [formData, setFormData] = useState({
     text: 'Dummy Text',
     photo: null,
-    imageUrl: null,  // Add this line
+    imageUrl: null,
     firstName: 'Andy',
     lastName: '',
     email: ''
@@ -36,6 +36,48 @@ function App() {
       .required('El email es requerido'),
   });
 
+ const handleFormSubmit = async (values, { setSubmitting }) => {
+  let imageUrl = null;
+  if (values.photo) {
+    imageUrl = URL.createObjectURL(values.photo);
+  }
+
+  try {
+    // Send form data via Basin
+    const response = await fetch('https://usebasin.com/f/994b9c63fbcc', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email_value: values.email, // Basin field
+        name: `${values.firstName} ${values.lastName}`,
+        message: values.text,
+      })
+    });
+
+    if (response.ok) {
+      console.log('Form submitted successfully!');
+      
+      setFormData({
+        ...values,
+        imageUrl: imageUrl
+      });
+
+      setSubmitting(false);
+      setOpenForm(false);
+      setOpenWall(true);
+    } else {
+      alert('Error sending message. Please try again.');
+      setSubmitting(false);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error sending message. Please try again.');
+    setSubmitting(false);
+  }
+};
+
   useEffect(() => {
     // Smooth scroll behavior for menu items
     const menuLinks = document.querySelectorAll('nav a[href^="#"]');
@@ -59,9 +101,9 @@ function App() {
               <img src={logo} alt="Campaign Logo" className="logo" />
         </div>
         <nav>
-          <a href="#video-section">Video</a>
-          <a href="#info-section">Info</a>
-          <a href="#second-video">Second Video</a>
+         
+          <a href="#info-section">Muro</a>
+          <a href="#second-video">Motivación</a>
             </nav>
             </div>
       </header>
@@ -74,7 +116,7 @@ function App() {
            height="100%" 
            src="https://www.youtube.com/embed/DDbhfS_XukM?si=2JazOuhSEVcrqFuS" 
            title="YouTube video player" 
-           frameborder="0" 
+           frameBorder="0" 
            allow="accelerometer; 
            autoplay; 
            clipboard-write; 
@@ -82,8 +124,8 @@ function App() {
            gyroscope; 
            picture-in-picture; 
            web-share" 
-           referrerpolicy="strict-origin-when-cross-origin" 
-           allowfullscreen> 
+           referrerPolicy="strict-origin-when-cross-origin" 
+           allowFullScreen> 
            </iframe>
               </div>
         </section>
@@ -108,28 +150,7 @@ function App() {
                       email: ''
                     }}
                     validationSchema={validationSchema}
-                    onSubmit={(values, { setSubmitting }) => {
-                      const formDataToSubmit = new FormData();
-                      formDataToSubmit.append('text', values.text);
-                      formDataToSubmit.append('firstName', values.firstName);
-                      formDataToSubmit.append('lastName', values.lastName);
-                      formDataToSubmit.append('email', values.email);
-                      
-                      let imageUrl = null;
-                      if (values.photo) {
-                        formDataToSubmit.append('photo', values.photo);
-                        imageUrl = URL.createObjectURL(values.photo);
-                      }
-
-                      setFormData({
-                        ...values,
-                        imageUrl: imageUrl
-                      });
-
-                      setSubmitting(false);
-                      setOpenForm(false);
-                      setOpenWall(true);
-                    }}
+                    onSubmit={handleFormSubmit}
                   >
                     {({ errors, touched, setFieldValue, values }) => (
                       <Form className="campaign-form">
@@ -156,7 +177,6 @@ function App() {
                               accept=".jpg,.jpeg,.png,.webp"
                               className="file-upload"
                             />
-                            {/* Show filename or check icon when file is selected */}
                             {values.photo && (
                                 <div className="file-status">
                                   <p style={{ color: 'black', fontWeight: 'bold' }}>Archivo seleccionado:</p>
