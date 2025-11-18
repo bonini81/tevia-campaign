@@ -71,7 +71,6 @@ button.button-message__styles {
 /* Main content styles */
 main {
   margin-top: 70px; /* Header height + some spacing */
-  flex: 1;
 }
 
 .container {
@@ -263,7 +262,7 @@ input[type="file"].file-upload {
     justify-content: flex-end;
   }
   .info-section {
-     background: url('assets/fondo-info-section-mobile.jpg') left/cover fixed;
+     background: url('assets/fondo-info-section-mobile.jpg') center/cover fixed;
      align-items: first baseline;
   }
 
@@ -276,6 +275,12 @@ input[type="file"].file-upload {
 
   .video-container {
     width: 100%;
+    height: 350px;
+  }
+
+   .video-section {
+    height: 450px;
+    padding: 0px;
   }
 }
 
@@ -326,4 +331,5 @@ input[type="file"].file-upload {
     display: flex;
     justify-content: flex-end;
   }
+
 }
