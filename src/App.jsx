@@ -94,7 +94,6 @@ function App() {
 
   return (
     <div className="app">
-     <div>
         <header> 
            <div className="container header-container">
             <div>
@@ -112,8 +111,8 @@ function App() {
           <section id="video-section" className="video-section">
             <div className="container video-container">
            <iframe 
-           width="100%" 
-           height="100%" 
+           width="90%" 
+           height="80%" 
            src="https://www.youtube.com/embed/DDbhfS_XukM?si=2JazOuhSEVcrqFuS" 
            title="YouTube video player" 
            frameBorder="0" 
@@ -279,8 +278,8 @@ function App() {
             <div className="container">
             <div className="video-container">
               <iframe 
-                width="100%" 
-                height="100%" 
+                width="90%" 
+                height="80%" 
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
                 title="Second Sample Video"
                 frameBorder="0" 
@@ -292,10 +291,9 @@ function App() {
         </section>
       </main>
 
-      <footer>
-        <p>&copy; 2025 Campaign Name. All rights reserved.</p>
+      <footer className="footer-styles">
+        <p>&copy; 2025 Lo que importa de verdad.</p>
         </footer>
-        </div>
     </div>
   )
 }
