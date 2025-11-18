@@ -160,6 +160,7 @@ function App() {
                             className="textarea-field"
                             placeholder="Tu mensaje (máximo 100 caracteres)"
                             maxLength={100}
+                            rows={4}
                           />
                           {errors.text && touched.text ? <div className="error">{errors.text}</div> : null}
                         </div>
