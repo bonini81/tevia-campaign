@@ -101,34 +101,14 @@ function App() {
         </div>
         <nav>
          
-          <a href="#info-section">Muro</a>
-          <a href="#second-video">Motivación</a>
+          <a href="#info-section">Lo qué importa para mí</a>
+          <a href="#second-video">Testimonios</a>
             </nav>
             </div>
       </header>
 
       <main>
-          <section id="video-section" className="video-section">
-            <div className="container video-container">
-           <iframe 
-           width="90%" 
-           height="80%" 
-           src="https://www.youtube.com/embed/DDbhfS_XukM?si=2JazOuhSEVcrqFuS" 
-           title="YouTube video player" 
-           frameBorder="0" 
-           allow="accelerometer; 
-           autoplay; 
-           clipboard-write; 
-           encrypted-media; 
-           gyroscope; 
-           picture-in-picture; 
-           web-share" 
-           referrerPolicy="strict-origin-when-cross-origin" 
-           allowFullScreen> 
-           </iframe>
-              </div>
-        </section>
-
+  
           <section id="info-section" className="info-section">
             <div className="container wall-container">
               <div className="info-content">
@@ -251,7 +231,7 @@ function App() {
             }}
             className="share-button twitter"
           >
-            Share on Twitter
+            Compartir en Twitter
           </button>
           <button
             onClick={() => {
@@ -264,7 +244,7 @@ function App() {
             }}
             className="share-button facebook"
           >
-            Share on Facebook
+            Compartir en Facebook
           </button>
         </div>
     
@@ -273,6 +253,21 @@ function App() {
                
               </div>
           </div>
+        </section>
+
+        <section id="video-section" className="video-section">
+            <div className="container video-container">
+            <iframe
+                width="90%" 
+                height="80%" 
+                src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+              </div>
         </section>
 
           <section id="second-video" className="video-section second-video-section">
