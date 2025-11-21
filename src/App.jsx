@@ -108,9 +108,13 @@ function App() {
       </header>
 
       <main>
-  
-          <section id="info-section" className="info-section">
-            <div className="container wall-container">
+    
+        <section id="info-section" className="info-section">
+        <article className="container info-container">
+          <h3 className="wall-section-title">Lo que importa de verdad</h3>
+        </article>
+          <div className="container wall-container">
+              
               <div className="info-content">
                 
                <div className="text-content">
@@ -274,7 +278,7 @@ function App() {
       </main>
 
       <footer className="footer-styles">
-        <p>&copy; 2025 Lo que importa de verdad.</p>
+        <p>&copy; 2025 Lo que importa de verdad. Stevia Life</p>
         </footer>
     </div>
   )

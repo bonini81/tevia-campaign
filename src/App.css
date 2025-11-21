@@ -152,13 +152,30 @@ main {
 }
 
 /* Update info section */
+
+.info-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wall-section-title {
+  font-family: 'Steelfish Bold', sans-serif;
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #fff; 
+  letter-spacing: 0.04em;
+  margin-bottom: 2rem;
+  line-height: 4rem;
+}
+
 .info-section {
   min-height: 85vh;
   padding: 4rem 1rem;
   background: url('assets/fondo-info-section.jpg') center/cover fixed;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
+  flex-direction: column;
 }
 
 
