@@ -248,7 +248,31 @@ function App() {
         <section id="video-section" className="video-section">
             <div className="container video-container">
             <iframe
-                width="90%" 
+                width="100%" 
+                height="80%" 
+                src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+          </div>
+              <div className="container video-container">
+            <iframe
+                width="100%" 
+                height="80%" 
+                src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+          </div>
+              <div className="container video-container">
+            <iframe
+                width="100%" 
                 height="80%" 
                 src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
                 title="YouTube video player"
