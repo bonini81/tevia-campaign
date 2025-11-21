@@ -5,6 +5,34 @@
   box-sizing: border-box;
 }
 
+/** Fonts */
+
+@font-face {
+  font-family: 'Steelfish Regular';
+  src: url('/src/assets/fonts/SteelfishRg.woff2') format('woff2'),
+       url('/src/assets/fonts/SteelfishRg.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Steelfish Bold';
+  src: url('/src/assets/fonts/SteelfishBd.woff2') format('woff2'),
+       url('/src/assets/fonts/SteelfishBd.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Steelfish Italic';
+  src: url('/src/assets/fonts/SteelfishRgIt.woff2') format('woff2'),
+       url('/src/assets/fonts/SteelfishRgIt.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/** End Fonts */ 
+
 .app {
   min-height: 100vh;
   display: flex;
@@ -16,8 +44,9 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+  height: 90px;
   padding: 0 2rem;
-  background-color: #439a4c;
+  background-color: #0d3050;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
@@ -42,26 +71,31 @@ nav {
 }
 
 nav a {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Steelfish Regular', sans-serif;
+  letter-spacing: 0.05em;
+  font-size: 1.2rem;
   text-decoration: none;
   color: #fff;
   transition: color 0.3s ease;
+  &:hover {
+    text-decoration: underline 1px #fff;
+    color: #fff;
+  }
 
 }
 
-nav a:hover {
-  color: #646cff;
-}
 
 button.button-message__styles {
-  border: 2px solid #439a4c;
-  background-color: transparent;
-  color: #439a4c;
+  border: 2px solid #22c55e;
+  background-color: #f9dd4c;
+  color: #22c55e;;
   border-radius: 5px;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Steelfish Bold', sans-serif;
   font-weight: bold;
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
   transition: background-color 0.3s ease, color 0.3s ease;
   &:hover {
     text-decoration: underline 1px #439a4c;
@@ -70,8 +104,7 @@ button.button-message__styles {
 
 /* Main content styles */
 main {
-  margin-top: 70px; /* Header height + some spacing */
-  flex: 1;
+  margin-top: 90px; /* Header height + some spacing */
 }
 
 .container {
@@ -87,12 +120,15 @@ main {
 }
 
 .message-content  {
-  color: #333;
+  font-family: 'Steelfish Regular', sans-serif;
+  letter-spacing: 0.05em;
+  font-size: 1.2rem;
+  color: #fff;
 }
 
 /* Video section styles */
 .video-section {
-  background-color: #F9DD4C;
+  background: linear-gradient(to top left, #6baed6, #102d53);
   width: 100%;
   height: 100vh;
   display: flex;
@@ -109,39 +145,76 @@ main {
   width: 100%;
   max-width: 1400px;
   aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
 }
 
 /* Update info section */
+
+.info-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wall-section-title {
+  font-family: 'Steelfish Bold', sans-serif;
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #fff; 
+  letter-spacing: 0.04em;
+  margin-bottom: 2rem;
+  line-height: 4rem;
+}
+
 .info-section {
-  min-height: 100vh;
+  min-height: 85vh;
   padding: 4rem 1rem;
   background: url('assets/fondo-info-section.jpg') center/cover fixed;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
+  flex-direction: column;
 }
 
 
 .info-content {
-  background: #F9DD4C;
+  background: transparent;
+  border: 1px solid #fff;
   padding: 2rem;
   border-radius: 8px;
   max-width: 500px;
   margin-right: 0px;
+ 
+  color: #fff;
 }
 
 .text-content {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Steelfish Bold', sans-serif;
+   font-size: 1.4rem;
   font-weight: bolder;
-  color: #439a4c; 
+  color: #fff; 
+  letter-spacing: 0.02em;
 }
 
 .wall-text-content {
-  font-family: 'Amatic SC', cursive;
+   font-family: 'Steelfish Bold', sans-serif;
+   font-size: 3rem;
   font-weight: bold;
-  color: #439a4c; 
-  font-size: 2rem;
+  color: #fff; 
+  letter-spacing: 0.03em;
+}
+
+.wall-text-name {
+  font-family: 'Steelfish Italic', sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: #fff; 
+  font-size: 1.4rem;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
 }
 
 .text-content h2 {
@@ -195,15 +268,93 @@ main {
 
 /* Footer styles */
 footer {
-  background-color: #439a4c;
+  background-color: #0d3050;
   text-align: center;
   padding: 1rem;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Steelfish Regular', sans-serif;
+  letter-spacing: 0.05em;
+  font-size: 1.2rem;
   text-decoration: none;
   color: #fff;
   transition: color 0.3s ease;
 }
 
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #0056b3;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  background-color: #fff;
+  color: #0056b3 !important;
+  font-family: 'Steelfish Regular', sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+}
+
+
+input[type="file"].file-upload {
+ border: 1px solid #fff;
+ border-radius: 4px;
+ padding: 0.5rem;
+ background-color: transparent;
+ color: #fff;
+ cursor: pointer;
+ font-size: 1rem;
+ font-weight: bold;
+}
+.form-group input.file-upload {
+  background-color: #fff;
+  color: #0056b3;
+}
+
+input[type="file"].file-upload::file-selector-button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Steelfish Regular', sans-serif;
+  letter-spacing: 0.08em;
+  transition: background-color 0.3s ease;
+}
+
+
+
+
+/* Add placeholder styling */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+   background-color: #fff !important;
+  color: #0056b3;
+  opacity: 1;
+}
+
+.submit-button {
+  background-color: #0056b3;
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  font-family: 'Steelfish Regular', sans-serif;
+  font-weight: bold;
+   letter-spacing: 0.06em;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
 
 /* Media Queries */
 /* Mobile devices - screens smaller than 768px */
@@ -222,19 +373,25 @@ footer {
     justify-content: flex-end;
   }
   .info-section {
-     background: url('assets/fondo-info-section-mobile.jpg') left/cover fixed;
+     background: url('assets/fondo-info-section-mobile.jpg') center/cover fixed;
      align-items: first baseline;
   }
 
 
   .info-content {
     margin-right: 0;
-    width: 75%;
+    width: 100%;
     opacity: 0.9;
   }
 
   .video-container {
     width: 100%;
+    height: 350px;
+  }
+
+   .video-section {
+    height: 450px;
+    padding: 0px;
   }
 }
 
@@ -251,66 +408,13 @@ footer {
   margin-top: 2rem;
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #439a4c;
-  border-radius: 4px;
-  font-size: 1rem;
-  background-color: transparent;
-  color: #439a4c;
-  opacity:1 !important;
-  font-weight: bold;
-}
-
-.form-group textarea {
-  min-height: 100px;
-  resize: vertical;
-  border: 1px solid #439a4c;
-  background-color: transparent;
-  color: #439a4c;
-  opacity:1 !important;
-  font-weight: bold;
-}
-
-input.file-upload {
-  border: 1px solid #439a4c;
-  border-radius: 4px;
-  padding: 0.5rem;
-  background-color: transparent;
-  color: #439a4c;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
 .error {
   color: #dc3545;
   font-size: 0.875rem;
   margin-top: 0.25rem;
 }
 
-.submit-button {
-  background-color: #439a4c;
-  color: white;
-  font-weight: bold;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-  font-family: 'Lato', sans-serif;
-}
 
-.submit-button:hover {
-  background-color: #0056b3;
-}
 
 /* Desktop - screens 1024px and larger */
 @media (min-width: 1024px) {
@@ -323,4 +427,5 @@ input.file-upload {
     display: flex;
     justify-content: flex-end;
   }
+
 }

@@ -94,7 +94,6 @@ function App() {
 
   return (
     <div className="app">
-     <div>
         <header> 
            <div className="container header-container">
             <div>
@@ -102,36 +101,20 @@ function App() {
         </div>
         <nav>
          
-          <a href="#info-section">Muro</a>
-          <a href="#second-video">Motivación</a>
+          <a href="#info-section">Lo qué importa para mí</a>
+          <a href="#second-video">Testimonios</a>
             </nav>
             </div>
       </header>
 
       <main>
-          <section id="video-section" className="video-section">
-            <div className="container video-container">
-           <iframe 
-           width="100%" 
-           height="100%" 
-           src="https://www.youtube.com/embed/DDbhfS_XukM?si=2JazOuhSEVcrqFuS" 
-           title="YouTube video player" 
-           frameBorder="0" 
-           allow="accelerometer; 
-           autoplay; 
-           clipboard-write; 
-           encrypted-media; 
-           gyroscope; 
-           picture-in-picture; 
-           web-share" 
-           referrerPolicy="strict-origin-when-cross-origin" 
-           allowFullScreen> 
-           </iframe>
-              </div>
-        </section>
-
-          <section id="info-section" className="info-section">
-            <div className="container wall-container">
+    
+        <section id="info-section" className="info-section">
+        <article className="container info-container">
+          <h3 className="wall-section-title">Lo que importa de verdad</h3>
+        </article>
+          <div className="container wall-container">
+              
               <div className="info-content">
                 
                <div className="text-content">
@@ -158,8 +141,10 @@ function App() {
                           <Field
                             as="textarea"
                             name="text"
+                            className="textarea-field"
                             placeholder="Tu mensaje (máximo 100 caracteres)"
                             maxLength={100}
+                            rows={4}
                           />
                           {errors.text && touched.text ? <div className="error">{errors.text}</div> : null}
                         </div>
@@ -227,7 +212,7 @@ function App() {
                   {formData &&
                     <>
                     <p className="wall-text-content">{formData?.text}</p>
-                      <p className="wall-text-content">{formData?.firstName}</p>
+                      <p className="wall-text-name">- {formData?.firstName} {formData?.lastName}</p>
                         {formData.imageUrl && (
                           <img 
                             src={formData.imageUrl} 
@@ -240,20 +225,6 @@ function App() {
                     <div className="social-share">
           <button
             onClick={() => {
-              const text = encodeURIComponent(formData.text);
-              const url = encodeURIComponent(window.location.href);
-              window.open(
-                `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
-                'twitter-share',
-                'width=550,height=400'
-              );
-            }}
-            className="share-button twitter"
-          >
-            Share on Twitter
-          </button>
-          <button
-            onClick={() => {
               const url = encodeURIComponent(window.location.href);
               window.open(
                 `https://www.facebook.com/sharer/sharer.php?u=${url}`,
@@ -263,7 +234,7 @@ function App() {
             }}
             className="share-button facebook"
           >
-            Share on Facebook
+            Compartir en Facebook
           </button>
         </div>
     
@@ -274,12 +245,27 @@ function App() {
           </div>
         </section>
 
+        <section id="video-section" className="video-section">
+            <div className="container video-container">
+            <iframe
+                width="90%" 
+                height="80%" 
+                src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
+              </div>
+        </section>
+
           <section id="second-video" className="video-section second-video-section">
             <div className="container">
             <div className="video-container">
               <iframe 
-                width="100%" 
-                height="100%" 
+                width="90%" 
+                height="80%" 
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
                 title="Second Sample Video"
                 frameBorder="0" 
@@ -291,10 +277,9 @@ function App() {
         </section>
       </main>
 
-      <footer>
-        <p>&copy; 2025 Campaign Name. All rights reserved.</p>
+      <footer className="footer-styles">
+        <p>&copy; 2025 Lo que importa de verdad. Stevia Life</p>
         </footer>
-        </div>
     </div>
   )
 }
