@@ -249,7 +249,7 @@ function App() {
             <div className="container video-container">
             <iframe
                 width="100%" 
-                height="80%" 
+                height="100%" 
                 src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
                 title="YouTube video player"
                 frameborder="0"
@@ -261,7 +261,7 @@ function App() {
               <div className="container video-container">
             <iframe
                 width="100%" 
-                height="80%" 
+                height="100%" 
                 src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
                 title="YouTube video player"
                 frameborder="0"
@@ -273,7 +273,7 @@ function App() {
               <div className="container video-container">
             <iframe
                 width="100%" 
-                height="80%" 
+                height="100%" 
                 src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
                 title="YouTube video player"
                 frameborder="0"
