@@ -130,13 +130,40 @@ main {
 .video-section {
   background: linear-gradient(to top left, #6baed6, #102d53);
   width: 100%;
-  height: 100vh;
+  height: 70vh;
+  padding: 2rem;
+}
+
+
+.multiple-videos-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  height: 60vh;
+}
+
+.video-section2 {
+  background: linear-gradient(to top left, #6baed6, #102d53);
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   padding: 2rem;
 }
+
+.video-container2 {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  align-items: center;
+  aspect-ratio: 16/9;
+  margin: 0 auto;
+}
+
+
 .second-video-section {
   background-color: #9bd99c;
 }
@@ -388,14 +415,18 @@ input[type="file"].file-upload::file-selector-button {
     padding: 20px 0px;
   }
 
-   .video-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  .video-section {
     height: 100%;
-    padding: 12px 0px;
   }
+
+  .multiple-videos-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+   padding: 12px 12px;
+}
+
 }
 
 /* Tablet - screens between 768px and 1023px */
