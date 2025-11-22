@@ -111,7 +111,9 @@ function App() {
     
         <section id="info-section" className="info-section">
         <article className="container info-container">
-          <h3 className="wall-section-title">Lo que importa de verdad</h3>
+            <h3 className="wall-section-title">Lo que <br />
+              importa <br />
+              de verdad</h3>
         </article>
           <div className="container wall-container">
               
@@ -246,35 +248,62 @@ function App() {
         </section>
 
         <section id="video-section" className="video-section">
-            <div className="container video-container">
-            <iframe
-                width="90%" 
-                height="80%" 
-                src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-              </iframe>
+          <div className="container multiple-videos-container">
+              <div className="video-container">
+                <iframe
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                  </iframe>
               </div>
+              <div className="container video-container">
+                <iframe
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                  </iframe>
+              </div>
+              <div className="container video-container">
+                <iframe
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                  </iframe>
+                </div>
+          </div>
         </section>
 
-          <section id="second-video" className="video-section second-video-section">
-            <div className="container">
-            <div className="video-container">
+          <section id="video-section" className="video-section2">
+          <div className="container video-container2">
+            
               <iframe 
                 width="90%" 
-                height="80%" 
+                height="70%" 
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
                 title="Second Sample Video"
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen>
               </iframe>
-                </div>
+          
             </div>
         </section>
+
       </main>
 
       <footer className="footer-styles">

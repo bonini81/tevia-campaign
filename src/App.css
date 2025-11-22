@@ -130,12 +130,40 @@ main {
 .video-section {
   background: linear-gradient(to top left, #6baed6, #102d53);
   width: 100%;
-  height: 100vh;
+  height: 70vh;
+  padding: 2rem;
+}
+
+
+.multiple-videos-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
+  height: 60vh;
+}
+
+.video-section2 {
+  background: linear-gradient(to top left, #6baed6, #102d53);
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   padding: 2rem;
 }
+
+.video-container2 {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  align-items: center;
+  aspect-ratio: 16/9;
+  margin: 0 auto;
+}
+
+
 .second-video-section {
   background-color: #9bd99c;
 }
@@ -145,9 +173,6 @@ main {
   width: 100%;
   max-width: 1400px;
   aspect-ratio: 16/9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 0 auto;
 }
 
@@ -160,12 +185,12 @@ main {
 
 .wall-section-title {
   font-family: 'Steelfish Bold', sans-serif;
-  font-size: 3.5rem;
+  font-size: 5.5rem;
   font-weight: bold;
   color: #fff; 
   letter-spacing: 0.04em;
   margin-bottom: 2rem;
-  line-height: 4rem;
+  line-height: 5.5rem;
 }
 
 .info-section {
@@ -356,6 +381,43 @@ input[type="file"].file-upload::file-selector-button {
   background-color: #0056b3;
 }
 
+
+/* Desktop - screens 1024px and larger */
+@media (min-width: 1024px) {
+  /* Current desktop styles already working well */
+  .container {
+    max-width: 1400px;
+    padding: 0 2rem;
+  }
+  .wall-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+}
+
+
+/* Tablet - screens between 768px and 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .info-content {
+    margin-right: 5%;
+    max-width: 400px;
+  }
+}
+
+/* Form styles */
+.campaign-form {
+  margin-top: 2rem;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+
+
 /* Media Queries */
 /* Mobile devices - screens smaller than 768px */
 @media (max-width: 767px) {
@@ -387,45 +449,20 @@ input[type="file"].file-upload::file-selector-button {
   .video-container {
     width: 100%;
     height: 350px;
+    padding: 20px 0px;
   }
 
-   .video-section {
-    height: 450px;
-    padding: 0px;
-  }
-}
-
-/* Tablet - screens between 768px and 1023px */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .info-content {
-    margin-right: 5%;
-    max-width: 400px;
-  }
-}
-
-/* Form styles */
-.campaign-form {
-  margin-top: 2rem;
-}
-
-.error {
-  color: #dc3545;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-}
-
-
-
-/* Desktop - screens 1024px and larger */
-@media (min-width: 1024px) {
-  /* Current desktop styles already working well */
-  .container {
-    max-width: 1400px;
-    padding: 0 2rem;
-  }
-  .wall-container {
-    display: flex;
-    justify-content: flex-end;
+  .video-section {
+    height: 100%;
   }
 
+  .multiple-videos-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+   padding: 12px 12px;
 }
+
+}
+
