@@ -185,12 +185,12 @@ main {
 
 .wall-section-title {
   font-family: 'Steelfish Bold', sans-serif;
-  font-size: 3.5rem;
+  font-size: 5.5rem;
   font-weight: bold;
   color: #fff; 
   letter-spacing: 0.04em;
   margin-bottom: 2rem;
-  line-height: 4rem;
+  line-height: 5.5rem;
 }
 
 .info-section {
@@ -381,6 +381,43 @@ input[type="file"].file-upload::file-selector-button {
   background-color: #0056b3;
 }
 
+
+/* Desktop - screens 1024px and larger */
+@media (min-width: 1024px) {
+  /* Current desktop styles already working well */
+  .container {
+    max-width: 1400px;
+    padding: 0 2rem;
+  }
+  .wall-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+}
+
+
+/* Tablet - screens between 768px and 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .info-content {
+    margin-right: 5%;
+    max-width: 400px;
+  }
+}
+
+/* Form styles */
+.campaign-form {
+  margin-top: 2rem;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+
+
 /* Media Queries */
 /* Mobile devices - screens smaller than 768px */
 @media (max-width: 767px) {
@@ -429,37 +466,3 @@ input[type="file"].file-upload::file-selector-button {
 
 }
 
-/* Tablet - screens between 768px and 1023px */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .info-content {
-    margin-right: 5%;
-    max-width: 400px;
-  }
-}
-
-/* Form styles */
-.campaign-form {
-  margin-top: 2rem;
-}
-
-.error {
-  color: #dc3545;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-}
-
-
-
-/* Desktop - screens 1024px and larger */
-@media (min-width: 1024px) {
-  /* Current desktop styles already working well */
-  .container {
-    max-width: 1400px;
-    padding: 0 2rem;
-  }
-  .wall-container {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-}

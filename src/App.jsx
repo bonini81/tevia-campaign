@@ -111,7 +111,9 @@ function App() {
     
         <section id="info-section" className="info-section">
         <article className="container info-container">
-          <h3 className="wall-section-title">Lo que importa de verdad</h3>
+            <h3 className="wall-section-title">Lo que <br />
+              importa <br />
+              de verdad</h3>
         </article>
           <div className="container wall-container">
               
