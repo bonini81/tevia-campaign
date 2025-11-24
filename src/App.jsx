@@ -110,18 +110,22 @@ function App() {
       <main>
     
         <section id="info-section" className="info-section">
-        <article className="container info-container">
-            <h3 className="wall-section-title">Lo que <br />
-              importa <br />
-              de verdad</h3>
-        </article>
+
+          <article className="container info-container">
+              <div className="info-content what-matters-content">
+                <h3 className="wall-section-title">Lo que <br />
+                  importa <br />
+                  de verdad</h3>
+              </div>
+            </article>
+       
           <div className="container wall-container">
               
               <div className="info-content">
                 
                <div className="text-content">
           
-                  <h3>¿Qué es lo que importa de verdad para ti?</h3>
+                  <h3>Comparte lo que importa para ti 💬</h3>
                   <br />
                   {openButton && <button onClick={handleOpenForm} className="button-message__styles">Deja tu mensaje</button>}
                 </div>
