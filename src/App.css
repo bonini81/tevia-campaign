@@ -411,7 +411,7 @@ input[type="file"].file-upload::file-selector-button {
 
 
 /* Desktop - screens 1024px and larger */
-@media (min-width: 1024px) {
+@media (min-width: 1101px) {
   /* Current desktop styles already working well */
   .container {
     max-width: 1400px;
@@ -426,7 +426,7 @@ input[type="file"].file-upload::file-selector-button {
 
 
 /* Tablet - screens between 768px and 1023px */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1100px) {
   .info-content {
     margin-right: 5%;
     max-width: 400px;
