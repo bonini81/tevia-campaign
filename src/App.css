@@ -110,6 +110,18 @@ main {
   margin-top: 90px; /* Header height + some spacing */
 }
 
+
+ .container {
+    max-width: 1400px;
+    padding: 0 2rem;
+  }
+  .wall-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+
+
 .container {
   width: 100%;
   margin: 0 auto;
@@ -410,19 +422,6 @@ input[type="file"].file-upload::file-selector-button {
 }
 
 
-/* Desktop - screens 1024px and larger */
-@media (min-width: 1101px) {
-  /* Current desktop styles already working well */
-  .container {
-    max-width: 1400px;
-    padding: 0 2rem;
-  }
-  .wall-container {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-}
 
 
 /* Tablet - screens between 768px and 1023px */
