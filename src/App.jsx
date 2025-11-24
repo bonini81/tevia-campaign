@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
+import { MdOutlineMessage } from "react-icons/md";
 import logo from './assets/1-logo.png'
 import './App.css'
 
@@ -125,7 +126,7 @@ function App() {
                 
                <div className="text-content">
           
-                  <h3>Comparte lo que importa para ti 💬</h3>
+                  <h3>Comparte lo que importa para ti <MdOutlineMessage /></h3>
                   <br />
                   {openButton && <button onClick={handleOpenForm} className="button-message__styles">Deja tu mensaje</button>}
                 </div>
