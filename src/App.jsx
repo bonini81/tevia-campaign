@@ -300,13 +300,15 @@ function App() {
           <div className="container video-container2">
           
               <iframe 
-                width="90%" 
-                height="70%" 
+                width="100%" 
+                height="500px" 
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
                 title="Second Sample Video"
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen>
+              allowFullScreen
+              className="youtube-iframe2"
+            >
               </iframe>
           
             </div>

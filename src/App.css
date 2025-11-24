@@ -155,7 +155,7 @@ main {
 .video-section2 {
   background: linear-gradient(to top left, #6baed6, #102d53);
   width: 100%;
-  height: 80vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,6 +166,12 @@ main {
 .youtube-iframe {
  width: 100%;
 height: 500px;
+}
+
+
+.youtube-iframe2 {
+ width: 100%;
+height: 600px;
 }
 
 .video-container2 {
@@ -482,5 +488,9 @@ input[type="file"].file-upload::file-selector-button {
 height: 300px;
 }
 
+.youtube-iframe2 {
+ width: 100%;
+height: 400px;
+}
 
 }
