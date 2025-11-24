@@ -431,6 +431,9 @@ input[type="file"].file-upload::file-selector-button {
     margin-right: 5%;
     max-width: 400px;
   }
+    .info-section {
+     background: url('assets/fondo-info-section-mobile.jpg') bottom/cover;
+  }
 }
 
 /* Form styles */
