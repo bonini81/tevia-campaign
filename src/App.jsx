@@ -248,57 +248,67 @@ function App() {
         </section>
 
         <section id="video-section" className="video-section">
+          <h3 className="video-section-title">Testimoniales</h3>
           <div className="container multiple-videos-container">
               <div className="video-container">
                 <iframe
                     width="100%" 
-                    height="100%" 
+                    height="500px" 
                     src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen>
+                    allowfullscreen
+                    className="youtube-iframe"
+                    >
                   </iframe>
               </div>
               <div className="container video-container">
                 <iframe
                     width="100%" 
-                    height="100%" 
+                    height="500px" 
                     src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen>
+                    allowfullscreen
+                    className="youtube-iframe"
+                    >
                   </iframe>
               </div>
               <div className="container video-container">
                 <iframe
                     width="100%" 
-                    height="100%" 
+                    height="500px" 
                     src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen>
+                    allowfullscreen
+                    className="youtube-iframe"
+                    >
                   </iframe>
                 </div>
           </div>
         </section>
 
           <section id="video-section" className="video-section2">
+                 <h3 className="video-section-title">Muro</h3>
           <div className="container video-container2">
-            
+          
               <iframe 
-                width="90%" 
-                height="70%" 
+                width="100%" 
+                height="500px" 
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
                 title="Second Sample Video"
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen>
+              allowFullScreen
+              className="youtube-iframe2"
+            >
               </iframe>
           
             </div>

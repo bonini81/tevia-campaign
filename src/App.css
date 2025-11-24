@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -130,7 +129,7 @@ main {
 .video-section {
   background: linear-gradient(to top left, #6baed6, #102d53);
   width: 100%;
-  height: 70vh;
+  height: 100%;
   padding: 2rem;
 }
 
@@ -140,13 +139,23 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  height: 60vh;
+  height: 100%;
+}
+
+.video-section-title {
+  font-family: 'Steelfish Bold', sans-serif;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #fff; 
+  letter-spacing: 0.04em;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .video-section2 {
   background: linear-gradient(to top left, #6baed6, #102d53);
   width: 100%;
-  height: 80vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -154,12 +163,22 @@ main {
   padding: 2rem;
 }
 
+.youtube-iframe {
+ width: 100%;
+height: 500px;
+}
+
+
+.youtube-iframe2 {
+ width: 100%;
+height: 600px;
+}
+
 .video-container2 {
-  width: 100%;
   max-width: 1400px;
+  height: 100%;
   display: flex;
   align-items: center;
-  aspect-ratio: 16/9;
   margin: 0 auto;
 }
 
@@ -464,5 +483,14 @@ input[type="file"].file-upload::file-selector-button {
    padding: 12px 12px;
 }
 
+.youtube-iframe {
+ width: 100%;
+height: 300px;
 }
 
+.youtube-iframe2 {
+ width: 100%;
+height: 400px;
+}
+
+}
