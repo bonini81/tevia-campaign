@@ -704,10 +704,6 @@ height: 400px;
   height: 100%;
 }
 
-.carousel-slot .slick-slide {
-  height: 100%;
-}
-
 .carousel-slot .slick-dots {
   bottom: -30px;
 }
