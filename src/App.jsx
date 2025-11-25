@@ -23,10 +23,10 @@ function App() {
     email: ''
   });
 
-  const [openForm, setOpenForm] = useState(false);
-  const [openWall, setOpenWall] = useState(false);
-  const [openButton, setOpenButton] = useState(true);
-  const [allMessages, setAllMessages] = useState([]);
+const [openForm, setOpenForm] = useState(false);
+const [openWall, setOpenWall] = useState(false);
+const [openButton, setOpenButton] = useState(true);
+const [allMessages, setAllMessages] = useState([]);
 const [loading, setLoading] = useState(true);
 const [newestMessages, setNewestMessages] = useState([]);
 const [randomMessages1, setRandomMessages1] = useState([]);
