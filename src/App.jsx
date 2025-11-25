@@ -313,7 +313,72 @@ function App() {
             </div>
           </section>
 
-          {/* ...rest of sections... */}
+            <section id="second-video" className="video-section">
+          <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Testimoniales</h3>
+          <div className="container multiple-videos-container">
+              <div className="video-container">
+                <iframe
+                    width="100%" 
+                    height="500px" 
+                    src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                    className="youtube-iframe"
+                    >
+                  </iframe>
+              </div>
+              <div className="container video-container">
+                <iframe
+                    width="100%" 
+                    height="500px" 
+                    src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                    className="youtube-iframe"
+                    >
+                  </iframe>
+              </div>
+              <div className="container video-container">
+                <iframe
+                    width="100%" 
+                    height="500px" 
+                    src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                    className="youtube-iframe"
+                    >
+                  </iframe>
+                </div>
+          </div>
+        </section>
+
+          <section id="video-section" className="video-section2">
+                 <h3 className="video-section-title"><MdVideocam className="icono__yellow" /> Muro</h3>
+          <div className="container video-container2">
+          
+              <iframe 
+                width="100%" 
+                height="500px" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="Second Sample Video"
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+              className="youtube-iframe2"
+            >
+              </iframe>
+          
+            </div>
+        </section>
 
           <section id="brick-wall" className="brick-wall-section">
             <h3 className="video-section-title"><MdOutlineMessage className="icono__yellow" /> Muro de Mensajes</h3>
