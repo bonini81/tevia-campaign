@@ -1,13 +1,17 @@
-import { useEffect, useState } from 'react'
-import { Formik, Form, Field } from 'formik'
-import * as Yup from 'yup'
+import { useEffect, useState } from 'react';
+import { Formik, Form, Field } from 'formik';
+import { db } from './firebase';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
+import * as Yup from 'yup';
 import { MdOutlineMessage } from "react-icons/md";
 import { MdMic } from "react-icons/md"; 
 import logo from './assets/1-logo.png'; 
 import { MdVideocam } from "react-icons/md";
 import { FaHashtag } from "react-icons/fa";
-
-import './App.css'
+import Slider from "react-slick";
+import './App.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   const [formData, setFormData] = useState({
@@ -22,8 +26,11 @@ function App() {
   const [openForm, setOpenForm] = useState(false);
   const [openWall, setOpenWall] = useState(false);
   const [openButton, setOpenButton] = useState(true);
+   const [allMessages, setAllMessages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleOpenForm = () => {
+
+    const handleOpenForm = () => {
     setOpenForm(true);
     setOpenButton(false);
   }
@@ -41,50 +48,103 @@ function App() {
       .required('El email es requerido'),
   });
 
- const handleFormSubmit = async (values, { setSubmitting }) => {
-  let imageUrl = null;
-  if (values.photo) {
-    imageUrl = URL.createObjectURL(values.photo);
-  }
+  // Fetch messages from Firebase
+  const fetchMessages = async () => {
+    try {
+      setLoading(true);
+      const querySnapshot = await getDocs(collection(db, 'messages'));
+      const messages = [];
+      querySnapshot.forEach((doc) => {
+        messages.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
+      setAllMessages(messages);
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  try {
-    // Send form data via Basin
-    const response = await fetch('https://usebasin.com/f/994b9c63fbcc', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email_value: values.email, // Basin field
-        name: `${values.firstName} ${values.lastName}`,
-        message: values.text,
-      })
-    });
+  // Fetch messages on component mount
+  useEffect(() => {
+    fetchMessages();
+  }, []);
 
-    if (response.ok) {
-      console.log('Form submitted successfully!');
-      
-      setFormData({
-        ...values,
-        imageUrl: imageUrl
+  const handleFormSubmit = async (values, { setSubmitting }) => {
+    let imageUrl = null;
+    if (values.photo) {
+      imageUrl = URL.createObjectURL(values.photo);
+    }
+
+    try {
+      // Send to Basin (email)
+      const response = await fetch('https://usebasin.com/f/994b9c63fbcc', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email_value: values.email,
+          name: `${values.firstName} ${values.lastName}`,
+          message: values.text,
+        })
       });
 
-      setSubmitting(false);
-      setOpenForm(false);
-      setOpenWall(true);
-    } else {
+      if (response.ok) {
+        console.log('Form submitted successfully!');
+        
+        // Save to Firebase Firestore
+        try {
+          await addDoc(collection(db, 'messages'), {
+            text: values.text,
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            timestamp: new Date(),
+            imageUrl: imageUrl || null
+          });
+
+          // Refresh messages list
+          await fetchMessages();
+        } catch (dbError) {
+          console.error('Error saving to database:', dbError);
+        }
+
+        setFormData({
+          ...values,
+          imageUrl: imageUrl
+        });
+
+        setSubmitting(false);
+        setOpenForm(false);
+        setOpenWall(true);
+      } else {
+        alert('Error sending message. Please try again.');
+        setSubmitting(false);
+      }
+    } catch (error) {
+      console.error('Error:', error);
       alert('Error sending message. Please try again.');
       setSubmitting(false);
     }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('Error sending message. Please try again.');
-    setSubmitting(false);
-  }
-};
+  };
+
+  // Carousel settings
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
+  };
 
   useEffect(() => {
-    // Smooth scroll behavior for menu items
     const menuLinks = document.querySelectorAll('nav a[href^="#"]');
     menuLinks.forEach(link => {
       link.addEventListener('click', (e) => {
@@ -103,21 +163,18 @@ function App() {
            <div className="container header-container">
             <div>
               <img src={logo} alt="Campaign Logo" className="logo" />
-        </div>
-        <nav>
-         
-          <a href="#info-section"><FaHashtag className="icono__yellow"  /> Lo qué importa</a>
-            <a href="#second-video"><MdMic className="icono__yellow" /> Testimonios</a>
-            <a href="#video-section"><MdVideocam className="icono__yellow" /> Muro</a>
-            </nav>
             </div>
-      </header>
+            <nav>
+              <a href="#info-section"><FaHashtag className="icono__yellow"  /> Lo qué importa</a>
+              <a href="#second-video"><MdMic className="icono__yellow" /> Testimonios</a>
+              <a href="#video-section"><MdVideocam className="icono__yellow" /> Muro</a>
+            </nav>
+           </div>
+        </header>
 
-      <main>
-    
-        <section id="info-section" className="info-section">
-
-          <article className="container info-container">
+        <main>
+          <section id="info-section" className="info-section">
+            <article className="container info-container">
               <div className="info-content what-matters-content">
                 <h3 className="wall-section-title"><span className="icono__yellow">#</span>Lo que <br />
                   importa <br />
@@ -127,16 +184,14 @@ function App() {
               </div>
             </article>
        
-          <div className="container wall-container">
-              
+            <div className="container wall-container">
               <div className="info-content">
-                
-               <div className="text-content">
-          
+                <div className="text-content">
                   <h3>Comparte lo que importa para ti <MdOutlineMessage className="icono__yellow" /></h3>
                   <br />
                   {openButton && <button onClick={handleOpenForm} className="button-message__styles">Deja tu mensaje</button>}
                 </div>
+                
                 {openForm ? 
                  <div className="form-content">
                   <Formik
@@ -221,6 +276,7 @@ function App() {
                   </Formik>
                 </div>
                   : ""}
+                  
                 {openWall ? (
                   <div className="message-content">
                   {formData &&
@@ -237,131 +293,56 @@ function App() {
                     </>
                     }
                     <div className="social-share">
-          <button
-            onClick={() => {
-              const url = encodeURIComponent(window.location.href);
-              window.open(
-                `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-                'facebook-share',
-                'width=550,height=400'
-              );
-            }}
-            className="share-button facebook"
-          >
-            Compartir en Facebook
-          </button>
-        </div>
-    
+                      <button
+                        onClick={() => {
+                          const url = encodeURIComponent(window.location.href);
+                          window.open(
+                            `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+                            'facebook-share',
+                            'width=550,height=400'
+                          );
+                        }}
+                        className="share-button facebook"
+                      >
+                        Compartir en Facebook
+                      </button>
+                    </div>
                   </div>
                 ) : ""}
-               
-              </div>
-          </div>
-        </section>
-
-        <section id="second-video" className="video-section">
-          <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Testimoniales</h3>
-          <div className="container multiple-videos-container">
-              <div className="video-container">
-                <iframe
-                    width="100%" 
-                    height="500px" 
-                    src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                    className="youtube-iframe"
-                    >
-                  </iframe>
-              </div>
-              <div className="container video-container">
-                <iframe
-                    width="100%" 
-                    height="500px" 
-                    src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                    className="youtube-iframe"
-                    >
-                  </iframe>
-              </div>
-              <div className="container video-container">
-                <iframe
-                    width="100%" 
-                    height="500px" 
-                    src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                    className="youtube-iframe"
-                    >
-                  </iframe>
-                </div>
-          </div>
-        </section>
-
-          <section id="video-section" className="video-section2">
-                 <h3 className="video-section-title"><MdVideocam className="icono__yellow" /> Muro</h3>
-          <div className="container video-container2">
-          
-              <iframe 
-                width="100%" 
-                height="500px" 
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                title="Second Sample Video"
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen
-              className="youtube-iframe2"
-            >
-              </iframe>
-          
-            </div>
-        </section>
-
-
-      <section id="info-section" className="brick-wall-section">
-
-          <article className="container info-container">
-              <div className="info-content what-matters-content">
-                <h3 className="wall-section-title"><span className="icono__yellow">#</span>Lo que <br />
-                  importa <br />
-                de verdad</h3>
-                <h3 className="wall-section-title--mobile"><span className="icono__yellow">#</span>Lo que importa <br />
-                  de verdad</h3>
-              </div>
-            </article>
-       
-          <div className="container wall-container">
-              
-              <div className="info-content">
-                
-               <div className="text-content">
-          
-       
-               
               </div>
             </div>
-          </div>
-        </section>    
+          </section>
 
+          {/* ...rest of sections... */}
 
+          <section id="brick-wall" className="brick-wall-section">
+            <h3 className="video-section-title"><MdOutlineMessage className="icono__yellow" /> Muro de Mensajes</h3>
+            <div className="container brick-wall-container">
+              {loading ? (
+                <p className="loading-text">Cargando mensajes...</p>
+              ) : allMessages.length > 0 ? (
+                <Slider {...sliderSettings}>
+                  {allMessages.map((message) => (
+                    <div key={message.id} className="message-card">
+                      <div className="message-card-content">
+                        <p className="message-text">"{message.text}"</p>
+                        <p className="message-author">- {message.firstName} {message.lastName}</p>
+                      </div>
+                    </div>
+                  ))}
+                </Slider>
+              ) : (
+                <p className="no-messages">No hay mensajes aún. ¡Sé el primero en dejar tu mensaje!</p>
+              )}
+            </div>
+          </section>
+        </main>
 
-
-      </main>
-
-      <footer className="footer-styles">
-        <p><span className="icono__yellow">&copy;</span> 2025 Lo que importa de verdad. Stevia Life</p>
+        <footer className="footer-styles">
+          <p><span className="icono__yellow">&copy;</span> 2025 Lo que importa de verdad. Stevia Life</p>
         </footer>
     </div>
   )
 }
 
-export default App
+export default App;
