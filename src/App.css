@@ -499,8 +499,8 @@ input[type="file"].file-upload::file-selector-button {
     justify-content: flex-end;
   }
   .info-section {
-     background: url('assets/fondo-info-section-mobile.jpg') center/cover fixed;
-     align-items: first baseline;
+     background: url('assets/fondo-info-section-mobile.jpg') bottom/cover fixed;
+     /* align-items: first baseline; */
      padding: 2rem 1rem;
   }
 
