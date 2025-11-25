@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-import logo from './assets/1-logo.png'
+import { MdOutlineMessage } from "react-icons/md";
+import { MdMic } from "react-icons/md"; 
+import logo from './assets/1-logo.png'; 
+import { MdVideocam } from "react-icons/md";
+import { FaHashtag } from "react-icons/fa";
+
 import './App.css'
 
 function App() {
@@ -101,8 +106,9 @@ function App() {
         </div>
         <nav>
          
-          <a href="#info-section">Lo qué importa para mí</a>
-          <a href="#second-video">Testimonios</a>
+          <a href="#info-section"><FaHashtag className="icono__yellow"  /> Lo qué importa</a>
+            <a href="#second-video"><MdMic className="icono__yellow" /> Testimonios</a>
+            <a href="#video-section"><MdVideocam className="icono__yellow" /> Muro</a>
             </nav>
             </div>
       </header>
@@ -110,18 +116,24 @@ function App() {
       <main>
     
         <section id="info-section" className="info-section">
-        <article className="container info-container">
-            <h3 className="wall-section-title">Lo que <br />
-              importa <br />
-              de verdad</h3>
-        </article>
+
+          <article className="container info-container">
+              <div className="info-content what-matters-content">
+                <h3 className="wall-section-title"><span className="icono__yellow">#</span>Lo que <br />
+                  importa <br />
+                de verdad</h3>
+                <h3 className="wall-section-title--mobile"><span className="icono__yellow">#</span>Lo que importa <br />
+                  de verdad</h3>
+              </div>
+            </article>
+       
           <div className="container wall-container">
               
               <div className="info-content">
                 
                <div className="text-content">
           
-                  <h3>¿Qué es lo que importa de verdad para ti?</h3>
+                  <h3>Comparte lo que importa para ti <MdOutlineMessage className="icono__yellow" /></h3>
                   <br />
                   {openButton && <button onClick={handleOpenForm} className="button-message__styles">Deja tu mensaje</button>}
                 </div>
@@ -247,8 +259,8 @@ function App() {
           </div>
         </section>
 
-        <section id="video-section" className="video-section">
-          <h3 className="video-section-title">Testimoniales</h3>
+        <section id="second-video" className="video-section">
+          <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Testimoniales</h3>
           <div className="container multiple-videos-container">
               <div className="video-container">
                 <iframe
@@ -296,7 +308,7 @@ function App() {
         </section>
 
           <section id="video-section" className="video-section2">
-                 <h3 className="video-section-title">Muro</h3>
+                 <h3 className="video-section-title"><MdVideocam className="icono__yellow" /> Muro</h3>
           <div className="container video-container2">
           
               <iframe 
@@ -314,10 +326,39 @@ function App() {
             </div>
         </section>
 
+
+      <section id="info-section" className="brick-wall-section">
+
+          <article className="container info-container">
+              <div className="info-content what-matters-content">
+                <h3 className="wall-section-title"><span className="icono__yellow">#</span>Lo que <br />
+                  importa <br />
+                de verdad</h3>
+                <h3 className="wall-section-title--mobile"><span className="icono__yellow">#</span>Lo que importa <br />
+                  de verdad</h3>
+              </div>
+            </article>
+       
+          <div className="container wall-container">
+              
+              <div className="info-content">
+                
+               <div className="text-content">
+          
+       
+               
+              </div>
+            </div>
+          </div>
+        </section>    
+
+
+
+
       </main>
 
       <footer className="footer-styles">
-        <p>&copy; 2025 Lo que importa de verdad. Stevia Life</p>
+        <p><span className="icono__yellow">&copy;</span> 2025 Lo que importa de verdad. Stevia Life</p>
         </footer>
     </div>
   )

@@ -84,6 +84,11 @@ nav a {
 }
 
 
+.wall-section-title--mobile {
+  display: none;
+}
+
+
 button.button-message__styles {
   border: 2px solid #22c55e;
   background-color: #f9dd4c;
@@ -106,6 +111,18 @@ main {
   margin-top: 90px; /* Header height + some spacing */
 }
 
+
+ .container {
+    max-width: 1400px;
+    padding: 0 2rem;
+  }
+  .wall-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+
+
 .container {
   width: 100%;
   margin: 0 auto;
@@ -116,6 +133,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
 }
 
 .message-content  {
@@ -134,6 +152,9 @@ main {
 }
 
 
+.icono__yellow {
+  color: #f9dd4c;
+}
 .multiple-videos-container {
   display: flex;
   align-items: center;
@@ -153,7 +174,7 @@ main {
 }
 
 .video-section2 {
-  background: linear-gradient(to top left, #6baed6, #102d53);
+  background: linear-gradient(to bottom left, #6baed6, #102d53);
   width: 100%;
   height: 100%;
   display: flex;
@@ -187,6 +208,7 @@ height: 600px;
   background-color: #9bd99c;
 }
 
+
 /* Update video container */
 .video-container {
   width: 100%;
@@ -213,7 +235,7 @@ height: 600px;
 }
 
 .info-section {
-  min-height: 85vh;
+  min-height: 100%;
   padding: 4rem 1rem;
   background: url('assets/fondo-info-section.jpg') center/cover fixed;
   display: flex;
@@ -230,8 +252,10 @@ height: 600px;
   border-radius: 8px;
   max-width: 500px;
   margin-right: 0px;
- 
   color: #fff;
+   &.what-matters-content {
+        border: none;
+  }
 }
 
 .text-content {
@@ -400,30 +424,6 @@ input[type="file"].file-upload::file-selector-button {
   background-color: #0056b3;
 }
 
-
-/* Desktop - screens 1024px and larger */
-@media (min-width: 1024px) {
-  /* Current desktop styles already working well */
-  .container {
-    max-width: 1400px;
-    padding: 0 2rem;
-  }
-  .wall-container {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-}
-
-
-/* Tablet - screens between 768px and 1023px */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .info-content {
-    margin-right: 5%;
-    max-width: 400px;
-  }
-}
-
 /* Form styles */
 .campaign-form {
   margin-top: 2rem;
@@ -437,12 +437,58 @@ input[type="file"].file-upload::file-selector-button {
 
 
 
+/** Brick Wall */ 
+
+
+.brick-wall-section {
+  background: url('assets/wall-content.jpg') center/cover fixed;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 4rem 1rem;
+}
+
+/* End */
+
+/* Tablet - screens between 768px and 1023px */
+@media (min-width: 768px) and (max-width: 1100px) {
+  .info-content {
+    margin-right: 5%;
+    max-width: 400px;
+  }
+
+  .container.wall-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+    .info-section {
+     background: url('assets/fondo-info-section-mobile.jpg') bottom/cover;
+  }
+
+    .brick-wall-section {
+  background: url('assets/wall-content-mobile.jpg') center/cover fixed;
+
+}
+}
+
+
+
+
 /* Media Queries */
 /* Mobile devices - screens smaller than 768px */
 @media (max-width: 767px) {
   header {
-    padding: 0.5rem 1rem;
+    padding: 0rem 1rem;
+    height: 130px;
   }
+
+
+  .header-container { 
+  flex-direction: column;
+}
 
   nav {
     gap: 1rem;
@@ -456,7 +502,15 @@ input[type="file"].file-upload::file-selector-button {
   .info-section {
      background: url('assets/fondo-info-section-mobile.jpg') center/cover fixed;
      align-items: first baseline;
+     padding: 2rem 1rem;
   }
+
+  .brick-wall-section {
+  background: url('assets/wall-content-mobile.jpg') center/cover fixed;
+  background-repeat: no-repeat; 
+  align-items: first baseline;
+  padding: 2rem 1rem;
+}
 
 
   .info-content {
@@ -491,6 +545,21 @@ height: 300px;
 .youtube-iframe2 {
  width: 100%;
 height: 400px;
+}
+
+.wall-section-title {
+  display: none;
+}
+
+.wall-section-title--mobile {
+  display: block;
+  font-size: 3.5rem;
+  font-family: 'Steelfish Bold', sans-serif;
+  font-weight: bold;
+  color: #fff; 
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+  line-height: 4.5rem;
 }
 
 }
