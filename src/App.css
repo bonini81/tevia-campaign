@@ -579,27 +579,29 @@ height: 400px;
 }
 
 .wall-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.1rem;
   margin-top: 2rem;
 }
 
 .carousel-column {
-  width: 100%;
+  width: 40%;
 }
 
 .carousel-slot {
   width: 100%;
-  height: 350px;
+  height: 80px;
 }
 
 .message-card {
   background: transparent;
-  border: 3px solid #fff;
-  border-radius: 8px;
+  /*border: 3px solid #fff;
+  border-radius: 8px; */
   padding: 1rem;
-  min-height: 50px;
+  min-height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -620,15 +622,16 @@ height: 400px;
 .message-card-content {
   text-align: center;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .message-text {
-  font-family: 'Amatic SC', cursive;
-  font-size: 1rem;
+ font-family: 'Steelfish Regular', sans-serif;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #fff;
-  margin: 0 0 1rem 0;
-  line-height: 1.6;
+  margin: 0 0 0.1rem 0;
+  line-height: 1.3;
   letter-spacing: 0.05em;
   word-break: break-word;
 }
@@ -679,12 +682,12 @@ height: 400px;
   }
 
   .carousel-slot {
-    height: 280px;
+    height: 70px;
   }
 
   .message-card {
     padding: 1.5rem;
-    min-height: 250px;
+    min-height: 70px;
   }
 
   .message-text {
@@ -713,6 +716,7 @@ height: 400px;
   font-size: 8px;
   color: #439a4c;
 }
+
 
 .carousel-slot .slick-dots li.slick-active button:before {
   color: #f4e4c1;

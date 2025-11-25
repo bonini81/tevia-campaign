@@ -443,17 +443,21 @@ const fetchMessages = async () => {
     <p className="loading-text">Cargando mensajes...</p>
   ) : (
     <div className="brick-wall-container">
-   
-          <CarouselSlot messages={newestMessages} speed={5000} />
-                         <CarouselSlot messages={randomMessages1} speed={6000} />
-                <CarouselSlot messages={randomMessages2} speed={5500} />
-                <CarouselSlot messages={oldestMessages} speed={7000} />
-                          <CarouselSlot messages={randomMessages3} speed={6500} />
+                <div className="wall-grid">
+                          <div className="carousel-column">
+                  <CarouselSlot messages={newestMessages} speed={5000} />
+            
+                  <CarouselSlot messages={randomMessages1} speed={6000} />
+                    <CarouselSlot messages={randomMessages2} speed={5500} />
+                  </div>
+                  
+                  <div className="carousel-column">
+                    <CarouselSlot messages={oldestMessages} speed={7000} />
+                    <CarouselSlot messages={randomMessages3} speed={6500} />
+                    <CarouselSlot messages={randomMessages4} speed={5800} />
+                   </div>
 
-          <CarouselSlot messages={randomMessages4} speed={5800} />
-
-
-        
+        </div>
     </div>
   )}
 </section>
