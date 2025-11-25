@@ -106,7 +106,7 @@ function App() {
         </div>
         <nav>
          
-          <a href="#info-section"><FaHashtag className="icono__yellow"  /> Lo qué importa para mí</a>
+          <a href="#info-section"><FaHashtag className="icono__yellow"  /> Lo qué importa</a>
           <a href="#second-video"><MdMic className="icono__yellow"  /> Testimonios</a>
             </nav>
             </div>
@@ -324,6 +324,35 @@ function App() {
           
             </div>
         </section>
+
+
+      <section id="info-section" className="brick-wall-section">
+
+          <article className="container info-container">
+              <div className="info-content what-matters-content">
+                <h3 className="wall-section-title"><span className="icono__yellow">#</span>Lo que <br />
+                  importa <br />
+                de verdad</h3>
+                <h3 className="wall-section-title--mobile"><span className="icono__yellow">#</span>Lo que importa <br />
+                  de verdad</h3>
+              </div>
+            </article>
+       
+          <div className="container wall-container">
+              
+              <div className="info-content">
+                
+               <div className="text-content">
+          
+       
+               
+              </div>
+            </div>
+          </div>
+        </section>    
+
+
+
 
       </main>
 
