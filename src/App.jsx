@@ -221,9 +221,10 @@ const fetchMessages = async () => {
               <img src={logo} alt="Campaign Logo" className="logo" />
             </div>
             <nav>
-              <a href="#info-section"><FaHashtag className="icono__yellow"  /> Lo qué importa</a>
+            <a href="#info-section"><FaHashtag className="icono__yellow" /> Lo qué importa</a>
+                   <a href="#video-section"><MdVideocam className="icono__yellow" /> Muro</a>
               <a href="#second-video"><MdMic className="icono__yellow" /> Testimonios</a>
-              <a href="#video-section"><MdVideocam className="icono__yellow" /> Muro</a>
+       
             </nav>
            </div>
         </header>
@@ -370,7 +371,7 @@ const fetchMessages = async () => {
           </section>
 
             <section id="second-video" className="video-section">
-          <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Testimoniales</h3>
+          <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Lo que Importa para mí</h3>
           <div className="container multiple-videos-container">
               <div className="video-container">
                 <iframe
