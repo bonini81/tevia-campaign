@@ -107,7 +107,8 @@ function App() {
         <nav>
          
           <a href="#info-section"><FaHashtag className="icono__yellow"  /> Lo qué importa</a>
-          <a href="#second-video"><MdMic className="icono__yellow"  /> Testimonios</a>
+            <a href="#second-video"><MdMic className="icono__yellow" /> Testimonios</a>
+            <a href="#video-section"><MdVideocam className="icono__yellow" /> Muro</a>
             </nav>
             </div>
       </header>
