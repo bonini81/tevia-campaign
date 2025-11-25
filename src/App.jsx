@@ -26,9 +26,32 @@ function App() {
   const [openForm, setOpenForm] = useState(false);
   const [openWall, setOpenWall] = useState(false);
   const [openButton, setOpenButton] = useState(true);
-   const [allMessages, setAllMessages] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [allMessages, setAllMessages] = useState([]);
+const [loading, setLoading] = useState(true);
+const [newestMessages, setNewestMessages] = useState([]);
+const [randomMessages1, setRandomMessages1] = useState([]);
+const [randomMessages2, setRandomMessages2] = useState([]);
+const [oldestMessages, setOldestMessages] = useState([]);
+const [randomMessages3, setRandomMessages3] = useState([]);
+const [randomMessages4, setRandomMessages4] = useState([]);
 
+
+// Helper functions to organize messages
+const getNewestMessages = (messages) => {
+  return messages.sort((a, b) => b.timestamp - a.timestamp).slice(0, 6);
+};
+
+const getRandomMessages = (messages, count = 6) => {
+  const shuffled = [...messages].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
+
+const getOldestMessages = (messages) => {
+  return messages.sort((a, b) => a.timestamp - b.timestamp).slice(0, 6);
+  };
+
+  
+/** END */
 
     const handleOpenForm = () => {
     setOpenForm(true);
@@ -48,30 +71,36 @@ function App() {
       .required('El email es requerido'),
   });
 
-  // Fetch messages from Firebase
-  const fetchMessages = async () => {
-    try {
-      setLoading(true);
-      const querySnapshot = await getDocs(collection(db, 'messages'));
-      const messages = [];
-      querySnapshot.forEach((doc) => {
-        messages.push({
-          id: doc.id,
-          ...doc.data()
-        });
+const fetchMessages = async () => {
+  try {
+    setLoading(true);
+    const querySnapshot = await getDocs(collection(db, 'messages'));
+    const messages = [];
+    querySnapshot.forEach((doc) => {
+      messages.push({
+        id: doc.id,
+        ...doc.data()
       });
-      setAllMessages(messages);
-    } catch (error) {
-      console.error('Error fetching messages:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    });
+    setAllMessages(messages);
 
-  // Fetch messages on component mount
+    // Organize messages for each carousel
+    setNewestMessages(getNewestMessages(messages));
+    setOldestMessages(getOldestMessages(messages));
+    setRandomMessages1(getRandomMessages(messages, 6));
+    setRandomMessages2(getRandomMessages(messages, 6));
+    setRandomMessages3(getRandomMessages(messages, 6));
+    setRandomMessages4(getRandomMessages(messages, 6));
+  } catch (error) {
+    console.error('Error fetching messages:', error);
+  } finally {
+    setLoading(false);
+  }
+  };
+  
   useEffect(() => {
-    fetchMessages();
-  }, []);
+  fetchMessages();
+}, []);
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
     let imageUrl = null;
@@ -132,17 +161,6 @@ function App() {
     }
   };
 
-  // Carousel settings
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    pauseOnHover: true,
-  };
 
   useEffect(() => {
     const menuLinks = document.querySelectorAll('nav a[href^="#"]');
@@ -156,6 +174,44 @@ function App() {
       });
     });
   }, []);
+
+
+  const CarouselSlot = ({ messages, speed = 5000 }) => {
+    // console.log('Messages received:', messages);
+  const settings = {
+    dots: false,
+    arrows: false,
+    infinite: messages.length > 1,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: messages.length > 1,
+    autoplaySpeed: speed,
+    pauseOnHover: true,
+  };
+
+  return (
+    <div className="carousel-slot">
+      {messages.length > 0 ? (
+        <Slider {...settings}>
+          {messages.map((message) => (
+            <div key={message.id} className="message-card">
+              <div className="message-card-content">
+                <p className="message-text">"{message.text}"</p>
+                <p className="message-author">- {message.firstName} {message.lastName}</p>
+              </div>
+            </div>
+          ))}
+        </Slider>
+      ) : (
+        <div className="message-card empty-slot">
+          <p className="empty-text">Cargando mensajes...</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
 
   return (
     <div className="app">
@@ -379,28 +435,27 @@ function App() {
           
             </div>
         </section>
+<section id="brick-wall" className="brick-wall-section">
+  <h3 className="video-section-title"><MdOutlineMessage className="icono__yellow" /> Muro de Mensajes</h3>
+  
+  {loading ? (
+    <p className="loading-text">Cargando mensajes...</p>
+  ) : (
+    <div className="brick-wall-container">
+   
+          <CarouselSlot messages={newestMessages} speed={5000} />
+                         <CarouselSlot messages={randomMessages1} speed={6000} />
+                <CarouselSlot messages={randomMessages2} speed={5500} />
+                <CarouselSlot messages={oldestMessages} speed={7000} />
+                          <CarouselSlot messages={randomMessages3} speed={6500} />
 
-          <section id="brick-wall" className="brick-wall-section">
-            <h3 className="video-section-title"><MdOutlineMessage className="icono__yellow" /> Muro de Mensajes</h3>
-            <div className="container brick-wall-container">
-              {loading ? (
-                <p className="loading-text">Cargando mensajes...</p>
-              ) : allMessages.length > 0 ? (
-                <Slider {...sliderSettings}>
-                  {allMessages.map((message) => (
-                    <div key={message.id} className="message-card">
-                      <div className="message-card-content">
-                        <p className="message-text">"{message.text}"</p>
-                        <p className="message-author">- {message.firstName} {message.lastName}</p>
-                      </div>
-                    </div>
-                  ))}
-                </Slider>
-              ) : (
-                <p className="no-messages">No hay mensajes aún. ¡Sé el primero en dejar tu mensaje!</p>
-              )}
-            </div>
-          </section>
+          <CarouselSlot messages={randomMessages4} speed={5800} />
+
+
+        
+    </div>
+  )}
+</section>
         </main>
 
         <footer className="footer-styles">
