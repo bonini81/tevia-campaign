@@ -509,7 +509,7 @@ input[type="file"].file-upload::file-selector-button {
     text-shadow: 2px 1px black;
   }
   .info-section {
-     background: url('assets/fondo-info-section-mobile.jpg') bottom/cover fixed;
+     background: url('assets/fondo-info-section-mobile.jpg') bottom/cover;
      /* align-items: first baseline; */
      padding: 2rem 1rem;
   }
