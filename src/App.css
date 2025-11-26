@@ -245,7 +245,7 @@ height: 600px;
 .info-section {
   min-height: 100%;
   padding: 4rem 1rem;
-  background: url('assets/fondo-info-section.jpg') center/cover fixed;
+  background: url('assets/fondo-info-section.jpg') center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -450,7 +450,7 @@ input[type="file"].file-upload::file-selector-button {
 
 
 .brick-wall-section {
-  background: url('assets/wall-content.jpg') center/cover fixed;
+  background: url('assets/wall-content.jpg') center/cover;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -478,7 +478,7 @@ input[type="file"].file-upload::file-selector-button {
   }
 
     .brick-wall-section {
-  background: url('assets/wall-content-mobile.jpg') center/cover fixed;
+  background: url('assets/wall-content-mobile.jpg') center/cover;
 
 }
 }
@@ -515,7 +515,7 @@ input[type="file"].file-upload::file-selector-button {
   }
 
   .brick-wall-section {
-  background: url('assets/wall-content-mobile.jpg') center/cover fixed;
+  background: url('assets/wall-content-mobile.jpg') center/cover;
   background-repeat: no-repeat; 
   align-items: center;
   padding: 2rem 1rem;
@@ -596,7 +596,7 @@ height: 400px;
 /* Brick Wall Section */
 .brick-wall-section {
   padding: 3rem 0;
-  background: url('assets/wall-content.jpg') center/cover fixed;
+  background: url('assets/wall-content.jpg') center/cover;
   min-height: 600px;
   color: white;
 }
