@@ -8,10 +8,10 @@ import { MdMic } from "react-icons/md";
 import logo from './assets/1-logo.png'; 
 import { MdVideocam } from "react-icons/md";
 import { FaHashtag } from "react-icons/fa";
-import Slider from "react-slick";
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 import './App.css';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   const [formData, setFormData] = useState({
@@ -176,38 +176,43 @@ const fetchMessages = async () => {
   }, []);
 
 
-  const CarouselSlot = ({ messages, speed = 5000 }) => {
-    // console.log('Messages received:', messages);
-  const settings = {
-    dots: false,
-    arrows: false,
-    infinite: messages.length > 1,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: messages.length > 1,
-    autoplaySpeed: speed,
-    pauseOnHover: true,
-  };
+// Replace your existing CarouselSlot with this simpler version
 
-  return (
-    <div className="carousel-slot">
-      {messages.length > 0 ? (
-        <Slider {...settings}>
-          {messages.map((message) => (
-            <div key={message.id} className="message-card">
-              <div className="message-card-content">
-                <p className="message-text">"{message.text}"</p>
-                <p className="message-author">- {message.firstName} {message.lastName}</p>
-              </div>
-            </div>
-          ))}
-        </Slider>
-      ) : (
+const CarouselSlot = ({ messages, speed = 5000 }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (messages.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex === messages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [messages, speed]);
+
+  if (messages.length === 0) {
+    return (
+      <div className="carousel-slot">
         <div className="message-card empty-slot">
           <p className="empty-text">Cargando mensajes...</p>
         </div>
-      )}
+      </div>
+    );
+  }
+
+  const currentMessage = messages[currentIndex];
+
+  return (
+    <div className="carousel-slot">
+      <div className="message-card">
+        <div className="message-card-content">
+          <p className="message-text">"{currentMessage.text}"</p>
+          <p className="message-author">- {currentMessage.firstName} {currentMessage.lastName}</p>
+        </div>
+      </div>
     </div>
   );
 };
@@ -221,9 +226,10 @@ const fetchMessages = async () => {
               <img src={logo} alt="Campaign Logo" className="logo" />
             </div>
             <nav>
-            <a href="#info-section"><FaHashtag className="icono__yellow" /> Lo qué importa</a>
-                   <a href="#video-section"><MdVideocam className="icono__yellow" /> Muro</a>
-              <a href="#second-video"><MdMic className="icono__yellow" /> Testimonios</a>
+            <a href="#que-importa"><FaHashtag className="icono__yellow" /> Lo qué importa</a>
+               <a href="#testiominos"><MdVideocam className="icono__yellow" /> Testimonios</a>
+              <a href="#brick-wall"><MdOutlineMessage className="icono__yellow" /> Muro</a>
+           
        
             </nav>
            </div>
@@ -233,11 +239,13 @@ const fetchMessages = async () => {
           <section id="info-section" className="info-section">
             <article className="container info-container">
               <div className="info-content what-matters-content">
-                <h3 className="wall-section-title"><span className="icono__yellow">#</span>Lo que <br />
-                  importa <br />
-                de verdad</h3>
-                <h3 className="wall-section-title--mobile"><span className="icono__yellow">#</span>Lo que importa <br />
-                  de verdad</h3>
+                <h3 className="wall-section-title"><span className="icono__yellow">#</span>Lo que importa de verdad</h3>
+                <h3 className="wall-section-title--mobile"><span className="icono__yellow">#</span>Lo que importa de verdad</h3>
+              <p className="paragraph-initial--styles">Vivimos rodeados de ruido que nos aleja de lo esencial.
+                Este espacio nace para pausar, respirar y reconectar.</p>
+                <p className="paragraph-initial--styles">Aquí puedes expresarte libremente: comparte una idea, emoción, reflexión… o simplemente una sonrisa.
+                Queremos escucharte.
+                Lo que tienes para decir, importa.</p>
               </div>
             </article>
        
@@ -245,7 +253,6 @@ const fetchMessages = async () => {
               <div className="info-content">
                 <div className="text-content">
                   <h3>Comparte lo que importa para ti <MdOutlineMessage className="icono__yellow" /></h3>
-                  <br />
                   {openButton && <button onClick={handleOpenForm} className="button-message__styles">Deja tu mensaje</button>}
                 </div>
                 
@@ -370,7 +377,7 @@ const fetchMessages = async () => {
             </div>
           </section>
 
-            <section id="second-video" className="video-section">
+            <section id="que-importa" className="video-section">
           <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Lo que Importa para mí</h3>
           <div className="container multiple-videos-container">
               <div className="video-container">
@@ -418,8 +425,8 @@ const fetchMessages = async () => {
           </div>
         </section>
 
-          <section id="video-section" className="video-section2">
-                 <h3 className="video-section-title"><MdVideocam className="icono__yellow" /> Muro</h3>
+          <section id="testiominos" className="video-section2">
+                 <h3 className="video-section-title"><MdVideocam className="icono__yellow" />   Testimonios</h3>
           <div className="container video-container2">
           
               <iframe 
@@ -451,7 +458,7 @@ const fetchMessages = async () => {
                     <CarouselSlot messages={randomMessages2} speed={5500} />
                   </div>
                   
-                  <div className="carousel-column">
+                  <div className="carousel-column mobile-hide">
                     <CarouselSlot messages={oldestMessages} speed={7000} />
                     <CarouselSlot messages={randomMessages3} speed={6500} />
                     <CarouselSlot messages={randomMessages4} speed={5800} />
