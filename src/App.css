@@ -494,7 +494,6 @@ input[type="file"].file-upload::file-selector-button {
     height: 130px;
   }
 
-
   .header-container { 
   flex-direction: column;
 }
@@ -689,7 +688,7 @@ height: 400px;
 
 .message-author {
   font-family: 'Steelfish Regular', sans-serif;
-  font-size: 1rem;
+  font-size: 1.4rem;
   color: #8b7355;
   margin: 0;
   font-weight: bold;
@@ -741,6 +740,6 @@ height: 400px;
   }
 
   .message-author {
-    font-size: 0.9rem;
+    font-size: 1.4rem;
   }
 }
