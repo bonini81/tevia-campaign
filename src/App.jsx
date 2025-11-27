@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 // import { Formik, Form, Field } from 'formik';
 import FormSection from './sections/FormSection';
 import { db } from './firebase';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import * as Yup from 'yup';
 import { MdOutlineMessage } from "react-icons/md";
 import { MdMic } from "react-icons/md"; 
@@ -198,8 +198,7 @@ const fetchMessages = async () => {
 
         <main>
           
-                <FormSection onMessageSubmit={fetchMessages} />
-
+  <FormSection onMessageSubmit={fetchMessages} />
 
             <section id="que-importa" className="video-section">
           <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Lo que Importa para mí</h3>
@@ -267,6 +266,8 @@ const fetchMessages = async () => {
           
             </div>
         </section>
+
+
 <section id="brick-wall" className="brick-wall-section">
   <h3 className="video-section-title"><MdOutlineMessage className="icono__yellow" /> Muro de Mensajes</h3>
   
