@@ -1,13 +1,17 @@
-import { useEffect, useState } from 'react'
-import { Formik, Form, Field } from 'formik'
-import * as Yup from 'yup'
+import { useEffect, useState } from 'react';
+import { Formik, Form, Field } from 'formik';
+import { db } from './firebase';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
+import * as Yup from 'yup';
 import { MdOutlineMessage } from "react-icons/md";
 import { MdMic } from "react-icons/md"; 
 import logo from './assets/1-logo.png'; 
 import { MdVideocam } from "react-icons/md";
 import { FaHashtag } from "react-icons/fa";
-
-import './App.css'
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+import './App.css';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -19,11 +23,37 @@ function App() {
     email: ''
   });
 
-  const [openForm, setOpenForm] = useState(false);
-  const [openWall, setOpenWall] = useState(false);
-  const [openButton, setOpenButton] = useState(true);
+const [openForm, setOpenForm] = useState(false);
+const [openWall, setOpenWall] = useState(false);
+const [openButton, setOpenButton] = useState(true);
+const [allMessages, setAllMessages] = useState([]);
+const [loading, setLoading] = useState(true);
+const [newestMessages, setNewestMessages] = useState([]);
+const [randomMessages1, setRandomMessages1] = useState([]);
+const [randomMessages2, setRandomMessages2] = useState([]);
+const [oldestMessages, setOldestMessages] = useState([]);
+const [randomMessages3, setRandomMessages3] = useState([]);
+const [randomMessages4, setRandomMessages4] = useState([]);
 
-  const handleOpenForm = () => {
+
+// Helper functions to organize messages
+const getNewestMessages = (messages) => {
+  return messages.sort((a, b) => b.timestamp - a.timestamp).slice(0, 6);
+};
+
+const getRandomMessages = (messages, count = 6) => {
+  const shuffled = [...messages].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
+
+const getOldestMessages = (messages) => {
+  return messages.sort((a, b) => a.timestamp - b.timestamp).slice(0, 6);
+  };
+
+  
+/** END */
+
+    const handleOpenForm = () => {
     setOpenForm(true);
     setOpenButton(false);
   }
@@ -41,50 +71,98 @@ function App() {
       .required('El email es requerido'),
   });
 
- const handleFormSubmit = async (values, { setSubmitting }) => {
-  let imageUrl = null;
-  if (values.photo) {
-    imageUrl = URL.createObjectURL(values.photo);
-  }
-
+const fetchMessages = async () => {
   try {
-    // Send form data via Basin
-    const response = await fetch('https://usebasin.com/f/994b9c63fbcc', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email_value: values.email, // Basin field
-        name: `${values.firstName} ${values.lastName}`,
-        message: values.text,
-      })
+    setLoading(true);
+    const querySnapshot = await getDocs(collection(db, 'messages'));
+    const messages = [];
+    querySnapshot.forEach((doc) => {
+      messages.push({
+        id: doc.id,
+        ...doc.data()
+      });
     });
+    setAllMessages(messages);
 
-    if (response.ok) {
-      console.log('Form submitted successfully!');
-      
-      setFormData({
-        ...values,
-        imageUrl: imageUrl
+    // Organize messages for each carousel
+    setNewestMessages(getNewestMessages(messages));
+    setOldestMessages(getOldestMessages(messages));
+    setRandomMessages1(getRandomMessages(messages, 6));
+    setRandomMessages2(getRandomMessages(messages, 6));
+    setRandomMessages3(getRandomMessages(messages, 6));
+    setRandomMessages4(getRandomMessages(messages, 6));
+  } catch (error) {
+    console.error('Error fetching messages:', error);
+  } finally {
+    setLoading(false);
+  }
+  };
+  
+  useEffect(() => {
+  fetchMessages();
+}, []);
+
+  const handleFormSubmit = async (values, { setSubmitting }) => {
+    let imageUrl = null;
+    if (values.photo) {
+      imageUrl = URL.createObjectURL(values.photo);
+    }
+
+    try {
+      // Send to Basin (email)
+      const response = await fetch('https://usebasin.com/f/994b9c63fbcc', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email_value: values.email,
+          name: `${values.firstName} ${values.lastName}`,
+          message: values.text,
+        })
       });
 
-      setSubmitting(false);
-      setOpenForm(false);
-      setOpenWall(true);
-    } else {
+      if (response.ok) {
+        console.log('Form submitted successfully!');
+        
+        // Save to Firebase Firestore
+        try {
+          await addDoc(collection(db, 'messages'), {
+            text: values.text,
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            timestamp: new Date(),
+            imageUrl: imageUrl || null
+          });
+
+          // Refresh messages list
+          await fetchMessages();
+        } catch (dbError) {
+          console.error('Error saving to database:', dbError);
+        }
+
+        setFormData({
+          ...values,
+          imageUrl: imageUrl
+        });
+
+        setSubmitting(false);
+        setOpenForm(false);
+        setOpenWall(true);
+      } else {
+        alert('Error sending message. Please try again.');
+        setSubmitting(false);
+      }
+    } catch (error) {
+      console.error('Error:', error);
       alert('Error sending message. Please try again.');
       setSubmitting(false);
     }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('Error sending message. Please try again.');
-    setSubmitting(false);
-  }
-};
+  };
+
 
   useEffect(() => {
-    // Smooth scroll behavior for menu items
     const menuLinks = document.querySelectorAll('nav a[href^="#"]');
     menuLinks.forEach(link => {
       link.addEventListener('click', (e) => {
@@ -97,46 +175,87 @@ function App() {
     });
   }, []);
 
+
+// Replace your existing CarouselSlot with this simpler version
+
+const CarouselSlot = ({ messages, speed = 5000 }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (messages.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex === messages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [messages, speed]);
+
+  if (messages.length === 0) {
+    return (
+      <div className="carousel-slot">
+        <div className="message-card empty-slot">
+          <p className="empty-text">Cargando mensajes...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const currentMessage = messages[currentIndex];
+
+  return (
+    <div className="carousel-slot">
+      <div className="message-card">
+        <div className="message-card-content">
+          <p className="message-text">"{currentMessage.text}"</p>
+          <p className="message-author">- {currentMessage.firstName} {currentMessage.lastName}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
   return (
     <div className="app">
         <header> 
            <div className="container header-container">
             <div>
               <img src={logo} alt="Campaign Logo" className="logo" />
-        </div>
-        <nav>
-         
-          <a href="#info-section"><FaHashtag className="icono__yellow"  /> Lo qué importa</a>
-            <a href="#second-video"><MdMic className="icono__yellow" /> Testimonios</a>
-            <a href="#video-section"><MdVideocam className="icono__yellow" /> Muro</a>
-            </nav>
             </div>
-      </header>
+            <nav>
+            <a href="#que-importa"><FaHashtag className="icono__yellow" /> Lo qué importa</a>
+               <a href="#testiominos"><MdVideocam className="icono__yellow" /> Testimonios</a>
+              <a href="#brick-wall"><MdOutlineMessage className="icono__yellow" /> Muro</a>
+           
+       
+            </nav>
+           </div>
+        </header>
 
-      <main>
-    
-        <section id="info-section" className="info-section">
-
-          <article className="container info-container">
+        <main>
+          <section id="info-section" className="info-section">
+            <article className="container info-container">
               <div className="info-content what-matters-content">
-                <h3 className="wall-section-title"><span className="icono__yellow">#</span>Lo que <br />
-                  importa <br />
-                de verdad</h3>
-                <h3 className="wall-section-title--mobile"><span className="icono__yellow">#</span>Lo que importa <br />
-                  de verdad</h3>
+                <h3 className="wall-section-title"><span className="icono__yellow">#</span>Lo que importa de verdad</h3>
+                <h3 className="wall-section-title--mobile"><span className="icono__yellow">#</span>Lo que importa de verdad</h3>
+              <p className="paragraph-initial--styles">Vivimos rodeados de ruido que nos aleja de lo esencial.
+                Este espacio nace para pausar, respirar y reconectar.</p>
+                <p className="paragraph-initial--styles">Aquí puedes expresarte libremente: comparte una idea, emoción, reflexión… o simplemente una sonrisa.
+                Queremos escucharte.
+                Lo que tienes para decir, importa.</p>
               </div>
             </article>
        
-          <div className="container wall-container">
-              
+            <div className="container wall-container">
               <div className="info-content">
-                
-               <div className="text-content">
-          
+                <div className="text-content">
                   <h3>Comparte lo que importa para ti <MdOutlineMessage className="icono__yellow" /></h3>
-                  <br />
                   {openButton && <button onClick={handleOpenForm} className="button-message__styles">Deja tu mensaje</button>}
                 </div>
+                
                 {openForm ? 
                  <div className="form-content">
                   <Formik
@@ -221,6 +340,7 @@ function App() {
                   </Formik>
                 </div>
                   : ""}
+                  
                 {openWall ? (
                   <div className="message-content">
                   {formData &&
@@ -237,30 +357,28 @@ function App() {
                     </>
                     }
                     <div className="social-share">
-          <button
-            onClick={() => {
-              const url = encodeURIComponent(window.location.href);
-              window.open(
-                `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-                'facebook-share',
-                'width=550,height=400'
-              );
-            }}
-            className="share-button facebook"
-          >
-            Compartir en Facebook
-          </button>
-        </div>
-    
+                      <button
+                        onClick={() => {
+                          const url = encodeURIComponent(window.location.href);
+                          window.open(
+                            `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+                            'facebook-share',
+                            'width=550,height=400'
+                          );
+                        }}
+                        className="share-button facebook"
+                      >
+                        Compartir en Facebook
+                      </button>
+                    </div>
                   </div>
                 ) : ""}
-               
               </div>
-          </div>
-        </section>
+            </div>
+          </section>
 
-        <section id="second-video" className="video-section">
-          <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Testimoniales</h3>
+            <section id="que-importa" className="video-section">
+          <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Lo que Importa para mí</h3>
           <div className="container multiple-videos-container">
               <div className="video-container">
                 <iframe
@@ -307,8 +425,8 @@ function App() {
           </div>
         </section>
 
-          <section id="video-section" className="video-section2">
-                 <h3 className="video-section-title"><MdVideocam className="icono__yellow" /> Muro</h3>
+          <section id="testiominos" className="video-section2">
+                 <h3 className="video-section-title"><MdVideocam className="icono__yellow" />   Testimonios</h3>
           <div className="container video-container2">
           
               <iframe 
@@ -325,43 +443,38 @@ function App() {
           
             </div>
         </section>
+<section id="brick-wall" className="brick-wall-section">
+  <h3 className="video-section-title"><MdOutlineMessage className="icono__yellow" /> Muro de Mensajes</h3>
+  
+  {loading ? (
+    <p className="loading-text">Cargando mensajes...</p>
+  ) : (
+    <div className="brick-wall-container">
+                <div className="wall-grid">
+                          <div className="carousel-column">
+                  <CarouselSlot messages={newestMessages} speed={5000} />
+            
+                  <CarouselSlot messages={randomMessages1} speed={6000} />
+                    <CarouselSlot messages={randomMessages2} speed={5500} />
+                  </div>
+                  
+                  <div className="carousel-column mobile-hide">
+                    <CarouselSlot messages={oldestMessages} speed={7000} />
+                    <CarouselSlot messages={randomMessages3} speed={6500} />
+                    <CarouselSlot messages={randomMessages4} speed={5800} />
+                   </div>
 
+        </div>
+    </div>
+  )}
+</section>
+        </main>
 
-      <section id="info-section" className="brick-wall-section">
-
-          <article className="container info-container">
-              <div className="info-content what-matters-content">
-                <h3 className="wall-section-title"><span className="icono__yellow">#</span>Lo que <br />
-                  importa <br />
-                de verdad</h3>
-                <h3 className="wall-section-title--mobile"><span className="icono__yellow">#</span>Lo que importa <br />
-                  de verdad</h3>
-              </div>
-            </article>
-       
-          <div className="container wall-container">
-              
-              <div className="info-content">
-                
-               <div className="text-content">
-          
-       
-               
-              </div>
-            </div>
-          </div>
-        </section>    
-
-
-
-
-      </main>
-
-      <footer className="footer-styles">
-        <p><span className="icono__yellow">&copy;</span> 2025 Lo que importa de verdad. Stevia Life</p>
+        <footer className="footer-styles">
+          <p><span className="icono__yellow">&copy;</span> 2025 Lo que importa de verdad. Stevia Life</p>
         </footer>
     </div>
   )
 }
 
-export default App
+export default App;
