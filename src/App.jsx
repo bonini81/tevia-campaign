@@ -1,30 +1,15 @@
 import { useEffect, useState } from 'react';
-// import { Formik, Form, Field } from 'formik';
 import FormSection from './sections/FormSection';
 import { db } from './firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import * as Yup from 'yup';
-import { MdOutlineMessage } from "react-icons/md";
-import { MdMic } from "react-icons/md"; 
-import logo from './assets/1-logo.png'; 
 import { MdVideocam } from "react-icons/md";
-import { FaHashtag } from "react-icons/fa";
-import CarouselSlot from './components/CarruselSlot.jsx';
+import { MdOutlineMessage } from "react-icons/md";
+import CarouselSlot from './components/CarruselSlot/CarruselSlot';
+import Header from './components/Header/Header.jsx';
+import ShortsSections from './sections/ShortsSections.jsx';
 import './App.css';
 
 function App() {
- /* const [formData, setFormData] = useState({
-    text: 'Dummy Text',
-    photo: null,
-    imageUrl: null,
-    firstName: 'Andy',
-    lastName: '',
-    email: ''
-  });*/
-
-// const [openForm, setOpenForm] = useState(false);
-// const [openWall, setOpenWall] = useState(false);
-  // const [openButton, setOpenButton] = useState(true);
   
 const [allMessages, setAllMessages] = useState([]);
 const [loading, setLoading] = useState(true);
@@ -49,27 +34,6 @@ const getRandomMessages = (messages, count = 6) => {
 const getOldestMessages = (messages) => {
   return messages.sort((a, b) => a.timestamp - b.timestamp).slice(0, 6);
   };
-
-  
-/** END */
-/*
-    const handleOpenForm = () => {
-    setOpenForm(true);
-    setOpenButton(false);
-  }
-
-  const validationSchema = Yup.object({
-    text: Yup.string()
-      .max(100, 'El texto no puede exceder 100 caracteres')
-      .required('El texto es requerido'),
-    firstName: Yup.string()
-      .required('El nombre es requerido'),
-    lastName: Yup.string()
-      .required('El apellido es requerido'),
-    email: Yup.string()
-      .email('Email inválido')
-      .required('El email es requerido'),
-  }); */
 
 const fetchMessages = async () => {
   try {
@@ -102,65 +66,6 @@ const fetchMessages = async () => {
   fetchMessages();
 }, []);
 
-  /* const handleFormSubmit = async (values, { setSubmitting }) => {
-    let imageUrl = null;
-    if (values.photo) {
-      imageUrl = URL.createObjectURL(values.photo);
-    }
-
-    try {
-      // Send to Basin (email)
-      const response = await fetch('https://usebasin.com/f/994b9c63fbcc', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email_value: values.email,
-          name: `${values.firstName} ${values.lastName}`,
-          message: values.text,
-        })
-      });
-
-      if (response.ok) {
-        console.log('Form submitted successfully!');
-        
-        // Save to Firebase Firestore
-        try {
-          await addDoc(collection(db, 'messages'), {
-            text: values.text,
-            firstName: values.firstName,
-            lastName: values.lastName,
-            email: values.email,
-            timestamp: new Date(),
-            imageUrl: imageUrl || null
-          });
-
-          // Refresh messages list
-          await fetchMessages();
-        } catch (dbError) {
-          console.error('Error saving to database:', dbError);
-        }
-
-        setFormData({
-          ...values,
-          imageUrl: imageUrl
-        });
-
-        setSubmitting(false);
-        setOpenForm(false);
-        setOpenWall(true);
-      } else {
-        alert('Error sending message. Please try again.');
-        setSubmitting(false);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Error sending message. Please try again.');
-      setSubmitting(false);
-    }
-  }; */
-
 
   useEffect(() => {
     const menuLinks = document.querySelectorAll('nav a[href^="#"]');
@@ -175,80 +80,18 @@ const fetchMessages = async () => {
     });
   }, []);
 
-
-
-
-
   return (
     <div className="app">
-        <header> 
-           <div className="container header-container">
-            <div>
-              <img src={logo} alt="Campaign Logo" className="logo" />
-            </div>
-            <nav>
-            <a href="#que-importa"><FaHashtag className="icono__yellow" /> Lo qué importa</a>
-               <a href="#testiominos"><MdVideocam className="icono__yellow" /> Testimonios</a>
-              <a href="#brick-wall"><MdOutlineMessage className="icono__yellow" /> Muro</a>
-           
-       
-            </nav>
-           </div>
-        </header>
+        
 
-        <main>
-          
+      <main>
+        
+          <Header />
   <FormSection onMessageSubmit={fetchMessages} />
 
-            <section id="que-importa" className="video-section">
-          <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Lo que Importa para mí</h3>
-          <div className="container multiple-videos-container">
-              <div className="video-container">
-                <iframe
-                    width="100%" 
-                    height="500px" 
-                    src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                    className="youtube-iframe"
-                    >
-                  </iframe>
-              </div>
-              <div className="container video-container">
-                <iframe
-                    width="100%" 
-                    height="500px" 
-                    src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                    className="youtube-iframe"
-                    >
-                  </iframe>
-              </div>
-              <div className="container video-container">
-                <iframe
-                    width="100%" 
-                    height="500px" 
-                    src="https://www.youtube.com/embed/kcj6RseMUyg?si=XQAkk0jCv24_ZS3D"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                    className="youtube-iframe"
-                    >
-                  </iframe>
-                </div>
-          </div>
-        </section>
+        <ShortsSections />
 
-          <section id="testiominos" className="video-section2">
+   <section id="testiominos" className="video-section2">
                  <h3 className="video-section-title"><MdVideocam className="icono__yellow" />   Testimonios</h3>
           <div className="container video-container2">
           
@@ -265,8 +108,7 @@ const fetchMessages = async () => {
               </iframe>
           
             </div>
-        </section>
-
+      </section>
 
 <section id="brick-wall" className="brick-wall-section">
   <h3 className="video-section-title"><MdOutlineMessage className="icono__yellow" /> Muro de Mensajes</h3>
@@ -292,7 +134,8 @@ const fetchMessages = async () => {
         </div>
     </div>
   )}
-</section>
+        </section>
+        
         </main>
 
         <footer className="footer-styles">
