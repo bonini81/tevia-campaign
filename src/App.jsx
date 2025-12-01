@@ -5,7 +5,8 @@ import { collection, getDocs } from 'firebase/firestore';
 import { MdVideocam } from "react-icons/md";
 import { MdOutlineMessage } from "react-icons/md";
 import CarouselSlot from './components/CarruselSlot/CarruselSlot';
-import Header from './components/Header/Header.jsx';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import ShortsSections from './sections/ShortsSections.jsx';
 import './App.css';
 
@@ -86,8 +87,9 @@ const fetchMessages = async () => {
 
       <main>
         
-          <Header />
-  <FormSection onMessageSubmit={fetchMessages} />
+        <Header />
+        
+        <FormSection onMessageSubmit={fetchMessages} />
 
         <ShortsSections />
 
@@ -138,9 +140,8 @@ const fetchMessages = async () => {
         
         </main>
 
-        <footer className="footer-styles">
-          <p><span className="icono__yellow">&copy;</span> 2025 Lo que importa de verdad. Stevia Life</p>
-        </footer>
+      <Footer />
+
     </div>
   )
 }

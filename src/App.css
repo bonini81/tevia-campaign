@@ -38,52 +38,6 @@
   flex-direction: column;
 }
 
-/* Header styles */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 90px;
-  padding: 0 2rem;
-  background-color: #0d3050;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
-}
-
-.logo {
-  width: 90px;
-  height: auto;
-}
-
-
-.logo h1 {
-  font-size: 1.5rem;
-  color: #333;
-}
-
-nav {
-  display: flex;
-  gap: 2rem;
-}
-
-nav a {
-  font-family: 'Steelfish Regular', sans-serif;
-  letter-spacing: 0.05em;
-  font-size: 1.2rem;
-  text-decoration: none;
-  color: #fff;
-  transition: color 0.3s ease;
-  &:hover {
-    text-decoration: underline 1px #fff;
-    color: #fff;
-  }
-
-}
-
-
 .wall-section-title--mobile {
   display: none;
 }
@@ -121,20 +75,13 @@ main {
     justify-content: flex-end;
   }
 
-
-
 .container {
   width: 100%;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-.header-container { 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-}
+
 
 .message-content  {
   font-family: 'Steelfish Regular', sans-serif;
@@ -343,19 +290,6 @@ height: 600px;
   font-weight: bold;
 }
 
-/* Footer styles */
-footer {
-  background-color: #0d3050;
-  text-align: center;
-  padding: 1rem;
-  font-family: 'Steelfish Regular', sans-serif;
-  letter-spacing: 0.05em;
-  font-size: 1.2rem;
-  text-decoration: none;
-  color: #fff;
-  transition: color 0.3s ease;
-}
-
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -403,9 +337,6 @@ input[type="file"].file-upload::file-selector-button {
   transition: background-color 0.3s ease;
 }
 
-
-
-
 /* Add placeholder styling */
 .form-group input::placeholder,
 .form-group textarea::placeholder {
@@ -444,14 +375,11 @@ input[type="file"].file-upload::file-selector-button {
   margin-top: 0.25rem;
 }
 
-
-
 /** Brick Wall */ 
-
 
 .brick-wall-section {
   background: url('assets/wall-content.jpg') center/cover;
-  min-height: 100vh;
+  min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -478,29 +406,15 @@ input[type="file"].file-upload::file-selector-button {
   }
 
     .brick-wall-section {
-  background: url('assets/wall-content-mobile.jpg') center/cover;
+    background: url('assets/wall-content-mobile.jpg') center/cover;
 
+  }
 }
-}
-
-
 
 
 /* Media Queries */
 /* Mobile devices - screens smaller than 768px */
 @media (max-width: 767px) {
-  header {
-    padding: 0rem 1rem;
-    height: 130px;
-  }
-
-  .header-container { 
-  flex-direction: column;
-}
-
-  nav {
-    gap: 1rem;
-  }
 
   .container.wall-container {
     display: flex;

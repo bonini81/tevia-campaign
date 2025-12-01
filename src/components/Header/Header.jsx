@@ -2,6 +2,7 @@ import logo from '../../assets/1-logo.png';
 import { MdVideocam } from "react-icons/md";
 import { FaHashtag } from "react-icons/fa";
 import { MdOutlineMessage } from "react-icons/md";
+import './Header.scss';
 
 const Header = () => {
   return (
