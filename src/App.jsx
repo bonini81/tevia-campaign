@@ -48,7 +48,7 @@ const fetchMessages = async () => {
       });
     });
     setAllMessages(messages);
-
+    console.log(allMessages);
     // Organize messages for each carousel
     setNewestMessages(getNewestMessages(messages));
     setOldestMessages(getOldestMessages(messages));
