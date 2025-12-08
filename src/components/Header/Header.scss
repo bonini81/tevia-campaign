@@ -1,0 +1,71 @@
+/* Header styles */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 90px;
+  padding: 0 2rem;
+  background-color: #0d3050;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.header-container { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+
+.logo {
+  width: 90px;
+  height: auto;
+}
+
+
+.logo h1 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  font-family: 'Steelfish Regular', sans-serif;
+  letter-spacing: 0.05em;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease;
+  &:hover {
+    text-decoration: underline 1px #fff;
+    color: #fff;
+  }
+
+}
+
+
+/* Media Queries */
+/* Mobile devices - screens smaller than 768px */
+@media (max-width: 767px) {
+  header {
+    padding: 0rem 1rem;
+    height: 130px;
+  }
+
+  .header-container { 
+  flex-direction: column;
+}
+
+  nav {
+    gap: 1rem;
+  }
+  
+}
