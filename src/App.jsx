@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import FormSection from './sections/FormSection';
 import { db } from './firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import { MdVideocam } from "react-icons/md";
 import { MdOutlineMessage } from "react-icons/md";
 import CarouselSlot from './components/CarruselSlot/CarruselSlot';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ShortsSections from './sections/ShortsSections.jsx';
+import Testimonios from './sections/Testimonios.jsx';
 import './App.css';
 
 function App() {
@@ -93,24 +93,8 @@ const fetchMessages = async () => {
 
         <ShortsSections />
 
-   <section id="testiominos" className="video-section2">
-                 <h3 className="video-section-title"><MdVideocam className="icono__yellow" />   Testimonios</h3>
-          <div className="container video-container2">
-          
-              <iframe 
-                width="100%" 
-                height="500px" 
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                title="Second Sample Video"
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen
-              className="youtube-iframe2"
-            >
-              </iframe>
-          
-            </div>
-      </section>
+        <Testimonios />
+   
 
 <section id="brick-wall" className="brick-wall-section">
   <h3 className="video-section-title"><MdOutlineMessage className="icono__yellow" /> Muro de Mensajes</h3>
