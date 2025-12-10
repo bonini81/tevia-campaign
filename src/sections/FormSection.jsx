@@ -21,30 +21,21 @@ const FormSection = ({ onMessageSubmit }) => {
       .max(100, 'El texto no puede exceder 100 caracteres')
       .required('El texto es requerido'),
     firstName: Yup.string()
-      .required('El nombre es requerido'),
-    lastName: Yup.string()
-      .required('El apellido es requerido'),
-    email: Yup.string()
-      .email('Email inválido')
-      .required('El email es requerido'),
+      .required('El nombre es requerido')
   });
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
-    let imageUrl = null;
-    if (values.photo) {
-      imageUrl = URL.createObjectURL(values.photo);
-    }
+
 
     try {
       // Send to Basin (email)
-      const response = await fetch('https://usebasin.com/f/994b9c63fbcc', {
+      const response = await fetch({
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email_value: values.email,
-          name: `${values.firstName} ${values.lastName}`,
+          name: values.firstName,
           message: values.text,
         })
       });
@@ -55,10 +46,7 @@ const FormSection = ({ onMessageSubmit }) => {
           await addDoc(collection(db, 'messages'), {
             text: values.text,
             firstName: values.firstName,
-            lastName: values.lastName,
-            email: values.email,
             timestamp: new Date(),
-            imageUrl: imageUrl || null
           });
 
           // Notify parent to refresh messages
@@ -71,7 +59,6 @@ const FormSection = ({ onMessageSubmit }) => {
 
         setFormData({
           ...values,
-          imageUrl: imageUrl
         });
 
         setSubmitting(false);
@@ -114,14 +101,12 @@ const FormSection = ({ onMessageSubmit }) => {
               <Formik
                 initialValues={{
                   text: '',
-                  firstName: '',
-                  lastName: '',
-                  email: ''
+                  firstName: ''
                 }}
                 validationSchema={validationSchema}
                 onSubmit={handleFormSubmit}
               >
-                {({ errors, touched, setFieldValue, values }) => (
+                {({ errors, touched }) => (
                   <Form className="campaign-form">
                     <div className="form-group">
                       <Field
@@ -136,29 +121,6 @@ const FormSection = ({ onMessageSubmit }) => {
                     </div>
 
                     <div className="form-group">
-                      <div className="file-input-wrapper">
-                        <input
-                          type="file"
-                          onChange={(event) => {
-                            const file = event.currentTarget.files[0];
-                            if (file) {
-                              setFieldValue("photo", file);
-                            }
-                          }}
-                          accept=".jpg,.jpeg,.png,.webp"
-                          className="file-upload"
-                        />
-                        {values.photo && (
-                          <div className="file-status">
-                            <p style={{ color: 'black', fontWeight: 'bold' }}>Archivo seleccionado:</p>
-                            <span className="file-name">{values.photo.name}</span>
-                            <span className="check-icon">✓</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="form-group">
                       <Field
                         type="text"
                         name="firstName"
@@ -167,23 +129,6 @@ const FormSection = ({ onMessageSubmit }) => {
                       {errors.firstName && touched.firstName && <div className="error">{errors.firstName}</div>}
                     </div>
 
-                    <div className="form-group">
-                      <Field
-                        type="text"
-                        name="lastName"
-                        placeholder="Apellido"
-                      />
-                      {errors.lastName && touched.lastName && <div className="error">{errors.lastName}</div>}
-                    </div>
-
-                    <div className="form-group">
-                      <Field
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                      />
-                      {errors.email && touched.email && <div className="error">{errors.email}</div>}
-                    </div>
 
                     <button type="submit" className="submit-button">
                       Enviar

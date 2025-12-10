@@ -33,7 +33,7 @@ const CarouselSlot = ({ messages, speed = 5000 }) => {
       <div className="message-card">
         <div className="message-card-content">
           <p className="message-text">"{currentMessage.text}"</p>
-          <p className="message-author">- {currentMessage.firstName} {currentMessage.lastName}</p>
+          <p className="message-author">- {currentMessage.firstName}</p>
         </div>
       </div>
     </div>
