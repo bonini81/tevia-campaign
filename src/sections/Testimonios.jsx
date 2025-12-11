@@ -8,7 +8,9 @@ import video2Webm from "../assets/video/2-webm.webm";
 import video3Webm from "../assets/video/3-webm.webm";
 import video4Webm from "../assets/video/4-webm.webm";
 import poster1 from "../assets/video/poster1.jpg";
-
+import poster2 from "../assets/video/poster1.jpg";
+import poster3 from "../assets/video/poster1.jpg";
+import poster4 from "../assets/video/poster1.jpg";
 const Testimonios = () => { 
 
 
@@ -27,7 +29,7 @@ const Testimonios = () => {
        
                </div>
                
-             <div className="container video-container">
+             <div className="container video-container" poster={poster2}>
                <video controls className="youtube-iframe">
             <source src={video2} type="video/mp4" />
               <source src={video2Webm} type="video/webm" />
@@ -37,7 +39,7 @@ const Testimonios = () => {
               </div>
         
                    <div className="container video-container">
-                      <video controls className="youtube-iframe">
+          <video controls className="youtube-iframe" poster={poster3}>
             <source src={video3} type="video/mp4" />
             <source src={video3Webm} type="video/webm" />
             Your browser does not support the video tag.
@@ -46,7 +48,7 @@ const Testimonios = () => {
                     </div>
         
             <div className="container video-container">
-                 <video controls className="youtube-iframe">
+                 <video controls className="youtube-iframe" poster={poster4}>
             <source src={video4} type="video/mp4" />
             <source src={video4Webm} type="video/webm" />
             Your browser does not support the video tag.
