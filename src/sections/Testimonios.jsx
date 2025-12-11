@@ -7,6 +7,7 @@ import video1Webm from "../assets/video/1-webm.webm";
 import video2Webm from "../assets/video/2-webm.webm";
 import video3Webm from "../assets/video/3-webm.webm";
 import video4Webm from "../assets/video/4-webm.webm";
+import poster1 from "../assets/video/poster1.jpg";
 
 const Testimonios = () => { 
 
@@ -18,7 +19,7 @@ const Testimonios = () => {
                <div className="container multiple-videos-container">
                    <div className="container video-container">
           
-          <video controls className="youtube-iframe">
+          <video controls className="youtube-iframe" poster={poster1}>
             <source src={video1} type="video/mp4" />
             <source src={video1Webm} type="video/webm" />
             Your browser does not support the video tag.
