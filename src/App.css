@@ -127,7 +127,7 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 2rem;
+  padding: 3rem;
 }
 
 .youtube-iframe {
