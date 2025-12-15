@@ -13,7 +13,7 @@ const Header = () => {
             </h5>
             <nav>
             <a href="#que-importa"><FaHashtag className="icono__yellow" /> Lo que importa</a>
-               <a href="#testiominos"><MdVideocam className="icono__yellow" /> Testimonios</a>
+               <a href="#testimonios"><MdVideocam className="icono__yellow" /> Testimonios</a>
               <a href="#brick-wall"><MdOutlineMessage className="icono__yellow" /> Muro</a>
            
        

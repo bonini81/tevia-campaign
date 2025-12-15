@@ -1,30 +1,65 @@
-import { MdVideocam } from "react-icons/md";
+import { MdMic } from "react-icons/md"; 
+import video1 from "../assets/video/1.mp4";
+import video2 from "../assets/video/2.mp4";
+import video3 from "../assets/video/3.mp4";
+import video4 from "../assets/video/4.mp4";
+import video1Webm from "../assets/video/1-webm.webm";
+import video2Webm from "../assets/video/2-webm.webm";
+import video3Webm from "../assets/video/3-webm.webm";
+import video4Webm from "../assets/video/4-webm.webm";
+import poster1 from "../assets/video/poster1.jpg";
+import poster2 from "../assets/video/poster2.jpg";
+import poster3 from "../assets/video/poster3.jpg";
+import poster4 from "../assets/video/poster4.jpg";
 
 const Testimonios = () => { 
 
 
   return ( 
 
-      <div className="testimonios-container">
-      <section id="testiominos" className="video-section2">
-                 <h3 className="video-section-title"><MdVideocam className="icono__yellow" />   Testimonios</h3>
-          <div className="container video-container2">
+      <section id="testimonios" className="video-section2">
+               <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Lo que Importa para mí</h3>
+               <div className="container multiple-videos-container">
+                   <div className="container video-container">
           
-              <iframe 
-                width="100%" 
-                height="500px" 
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                title="Second Sample Video"
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen
-              className="youtube-iframe2"
-            >
-              </iframe>
-          
+          <video controls className="youtube-iframe" poster={poster1}>
+            <source src={video1} type="video/mp4" />
+            <source src={video1Webm} type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+       
+               </div>
+               
+             <div className="container video-container" poster={poster2}>
+               <video controls className="youtube-iframe">
+            <source src={video2} type="video/mp4" />
+              <source src={video2Webm} type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+       
+              </div>
+        
+                   <div className="container video-container">
+          <video controls className="youtube-iframe" poster={poster3}>
+            <source src={video3} type="video/mp4" />
+            <source src={video3Webm} type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+       
+                    </div>
+        
+            <div className="container video-container">
+                 <video controls className="youtube-iframe" poster={poster4}>
+            <source src={video4} type="video/mp4" />
+            <source src={video4Webm} type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+       
             </div>
-      </section>
-      </div>
+        
+               </div>
+             </section>
+     
   )
 
     
