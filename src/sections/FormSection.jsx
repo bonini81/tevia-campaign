@@ -89,11 +89,12 @@ const FormSection = ({ onMessageSubmit }) => {
         </div>
       </article>
 
-      <div className="container wall-container">
-        <div className="info-content">
+      <div id="form-send" className="container wall-container">
+        <div className="info-content centered-content">
           <div className="text-content">
             <h3>Comparte lo que importa para ti <MdOutlineMessage className="icono__yellow" /></h3>
-            {openButton && <button onClick={handleOpenForm} className="button-message__styles">Deja tu mensaje</button>}
+       
+            {openButton && <button onClick={handleOpenForm} className="button-message__styles">Comparte tu mensaje</button>}
           </div>
           
           {openForm && (

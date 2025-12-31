@@ -97,7 +97,9 @@ const fetchMessages = async () => {
    
 
 <section id="brick-wall" className="brick-wall-section">
-  <h3 className="video-section-title"><MdOutlineMessage className="icono__yellow" /> Muro de Mensajes</h3>
+          <h3 className="video-section-title"><MdOutlineMessage className="icono__yellow" /> Muro de Mensajes</h3>
+          
+          <button href="#form-send" className="button-message__styles wall-styles">Comparte tu mensaje</button>
   
   {loading ? (
     <p className="loading-text">Cargando mensajes...</p>
