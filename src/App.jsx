@@ -103,7 +103,7 @@ const fetchMessages = async () => {
               onClick={() => document.querySelector('#form-send').scrollIntoView({ behavior: 'smooth' })}
               className="button-message__styles wall-styles"
             >
-              Comparte tu mensaje
+              Comparte lo que importa para ti
             </button>
   
   {loading ? (
