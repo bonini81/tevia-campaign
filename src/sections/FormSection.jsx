@@ -5,15 +5,12 @@ import { MdOutlineMessage } from "react-icons/md";
 import { db } from '../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
-const FormSection = ({ onMessageSubmit }) => {
+const FormSection = ({ onMessageSubmit, openFormState, openWallState, openButtonState, setOpenFormState, setOpenWallState, setOpenButtonState }) => {
   const [formData, setFormData] = useState(null);
-  const [openForm, setOpenForm] = useState(false);
-  const [openWall, setOpenWall] = useState(false);
-  const [openButton, setOpenButton] = useState(true);
 
   const handleOpenForm = () => {
-    setOpenForm(true);
-    setOpenButton(false);
+    setOpenFormState(true);
+    setOpenButtonState(false);
   };
 
   const validationSchema = Yup.object({
@@ -62,8 +59,9 @@ const FormSection = ({ onMessageSubmit }) => {
         });
 
         setSubmitting(false);
-        setOpenForm(false);
-        setOpenWall(true);
+
+        setOpenFormState(false);
+        setOpenWallState(true);
       } else {
         alert('Error sending message. Please try again.');
         setSubmitting(false);
@@ -94,10 +92,10 @@ const FormSection = ({ onMessageSubmit }) => {
           <div className="text-content">
             <h3>Comparte lo que importa para ti <MdOutlineMessage className="icono__yellow" /></h3>
        
-            {openButton && <button onClick={handleOpenForm} className="button-message__styles">Comparte tu mensaje</button>}
+            {openButtonState && <button onClick={handleOpenForm} className="button-message__styles">Comparte tu mensaje</button>}
           </div>
           
-          {openForm && (
+          {openFormState && (
             <div className="form-content">
               <Formik
                 initialValues={{
@@ -140,7 +138,7 @@ const FormSection = ({ onMessageSubmit }) => {
             </div>
           )}
             
-          {openWall && formData && (
+          {openWallState && formData && (
             <div className="message-content">
               <p className="wall-text-content">{formData.text}</p>
               <p className="wall-text-name">- {formData.firstName} {formData.lastName}</p>

@@ -20,6 +20,10 @@ const [randomMessages2, setRandomMessages2] = useState([]);
 const [oldestMessages, setOldestMessages] = useState([]);
 const [randomMessages3, setRandomMessages3] = useState([]);
 const [randomMessages4, setRandomMessages4] = useState([]);
+  
+const [openForm, setOpenForm] = useState(false);
+const [openWall, setOpenWall] = useState(false);
+const [openButton, setOpenButton] = useState(true);
 
 
 // Helper functions to organize messages
@@ -81,6 +85,13 @@ const fetchMessages = async () => {
     });
   }, []);
 
+const handleClickOpenForm = () => {
+  document.querySelector('#form-send').scrollIntoView({ behavior: 'smooth' });
+  setOpenForm(true);
+  setOpenWall(false);
+  setOpenButton(false);
+  }
+
   return (
     <div className="app">
         
@@ -89,7 +100,15 @@ const fetchMessages = async () => {
         
         <Header />
         
-        <FormSection onMessageSubmit={fetchMessages} />
+        <FormSection
+          onMessageSubmit={fetchMessages}
+          openFormState={openForm}
+          openWallState={openWall}
+          openButtonState={openButton}
+          setOpenFormState={setOpenForm}
+          setOpenWallState={setOpenWall}
+          setOpenButtonState={setOpenButton}
+        />
 
         <ShortsSections />
 
@@ -100,7 +119,8 @@ const fetchMessages = async () => {
           <h3 className="video-section-title"><MdOutlineMessage className="icono__yellow" /> Muro de Mensajes</h3>
           
             <button 
-              onClick={() => document.querySelector('#form-send').scrollIntoView({ behavior: 'smooth' })}
+            // onClick={() => document.querySelector('#form-send').scrollIntoView({ behavior: 'smooth' })}
+            onClick={handleClickOpenForm}
               className="button-message__styles wall-styles"
             >
               Comparte lo que importa para ti
