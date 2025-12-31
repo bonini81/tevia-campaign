@@ -78,7 +78,7 @@ const FormSection = ({ onMessageSubmit }) => {
   return (
     <section id="info-section" className="info-section">
       <article className="container info-container">
-        <div className="info-content what-matters-content">
+        <div id="form-send" className="info-content what-matters-content">
           <h3 className="wall-section-title"><span className="icono__yellow">#</span>Lo que importa de verdad</h3>
           <h3 className="wall-section-title--mobile"><span className="icono__yellow">#</span>Lo que importa de verdad</h3>
           <p className="paragraph-initial--styles">Vivimos rodeados de ruido que nos aleja de lo esencial.
@@ -90,10 +90,11 @@ const FormSection = ({ onMessageSubmit }) => {
       </article>
 
       <div className="container wall-container">
-        <div className="info-content">
+        <div className="info-content centered-content">
           <div className="text-content">
             <h3>Comparte lo que importa para ti <MdOutlineMessage className="icono__yellow" /></h3>
-            {openButton && <button onClick={handleOpenForm} className="button-message__styles">Deja tu mensaje</button>}
+       
+            {openButton && <button onClick={handleOpenForm} className="button-message__styles">Comparte tu mensaje</button>}
           </div>
           
           {openForm && (

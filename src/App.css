@@ -44,19 +44,24 @@
 
 
 button.button-message__styles {
+  margin-top: 20px;
   border: 2px solid #102d53;
   background-color: #f9dd4c;
   color: #102d53;
   border-radius: 5px;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1.5rem;
   cursor: pointer;
   font-family: 'Steelfish Bold', sans-serif;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   letter-spacing: 0.04em;
   transition: background-color 0.3s ease, color 0.3s ease;
   &:hover {
     text-decoration: underline 1px #102d53;
+  }
+  &.wall-styles {
+    padding: 0.7rem 1.2rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -209,6 +214,9 @@ height: 600px;
   color: #fff;
    &.what-matters-content {
         border: none;
+  }
+  &.centered-content {
+     text-align: center;
   }
 }
 

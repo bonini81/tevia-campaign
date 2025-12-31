@@ -17,8 +17,8 @@ const Testimonios = () => {
 
   return ( 
 
-      <section id="testimonios" className="video-section2">
-               <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Lo que Importa para mí</h3>
+      <section id="nuestra-causa" className="video-section2">
+               <h3 className="video-section-title"><MdMic className="icono__yellow"  /> Nuestra causa</h3>
                <div className="container multiple-videos-container">
                    <div className="container video-container">
           
