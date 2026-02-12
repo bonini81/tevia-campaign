@@ -11,6 +11,13 @@
         "source": "**",
         "destination": "/index.html"
       }
+    ],
+    "redirects": [
+      {
+        "source": "**",
+        "destination": "https://tu-dominio-principal.com",
+        "type": 301
+      }
     ]
   }
 }
