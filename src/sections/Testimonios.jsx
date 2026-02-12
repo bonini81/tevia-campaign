@@ -1,12 +1,4 @@
 import { MdMic } from "react-icons/md"; 
-import video1 from "../assets/video/1.mp4";
-import video2 from "../assets/video/2.mp4";
-import video3 from "../assets/video/3.mp4";
-import video4 from "../assets/video/4.mp4";
-import video1Webm from "../assets/video/1-webm.webm";
-import video2Webm from "../assets/video/2-webm.webm";
-import video3Webm from "../assets/video/3-webm.webm";
-import video4Webm from "../assets/video/4-webm.webm";
 import poster1 from "../assets/video/poster1.jpg";
 import poster2 from "../assets/video/poster2.jpg";
 import poster3 from "../assets/video/poster3.jpg";
@@ -23,8 +15,8 @@ const Testimonios = () => {
                    <div className="container video-container">
           
           <video controls className="youtube-iframe" poster={poster1}>
-            <source src={video1} type="video/mp4" />
-            <source src={video1Webm} type="video/webm" />
+            <source src="https://test.pugle-tech.pw/video-stevia/1.mp4" type="video/mp4" />
+            <source src="https://test.pugle-tech.pw/video-stevia/1-webm.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
        
@@ -32,8 +24,8 @@ const Testimonios = () => {
                
              <div className="container video-container" poster={poster2}>
                <video controls className="youtube-iframe">
-            <source src={video2} type="video/mp4" />
-              <source src={video2Webm} type="video/webm" />
+            <source src="https://test.pugle-tech.pw/video-stevia/2.mp4" type="video/mp4" />
+              <source src="https://test.pugle-tech.pw/video-stevia/2-webm.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
        
@@ -41,8 +33,8 @@ const Testimonios = () => {
         
                    <div className="container video-container">
           <video controls className="youtube-iframe" poster={poster3}>
-            <source src={video3} type="video/mp4" />
-            <source src={video3Webm} type="video/webm" />
+            <source src="https://test.pugle-tech.pw/video-stevia/3.mp4" type="video/mp4" />
+            <source src="https://test.pugle-tech.pw/video-stevia/3-webm.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
        
@@ -50,8 +42,8 @@ const Testimonios = () => {
         
             <div className="container video-container">
                  <video controls className="youtube-iframe" poster={poster4}>
-            <source src={video4} type="video/mp4" />
-            <source src={video4Webm} type="video/webm" />
+            <source src="https://test.pugle-tech.pw/video-stevia/4.mp4" type="video/mp4" />
+            <source src="https://test.pugle-tech.pw/video-stevia/4-webm.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
        
